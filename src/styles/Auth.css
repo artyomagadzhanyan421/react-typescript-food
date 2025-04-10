@@ -1,0 +1,102 @@
+.SignIn {
+    background-color: #1C1917;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.authGrid {
+    background-color: #292524;
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 615px;
+    border-radius: 25px;
+    width: 1150px;
+    margin: 50px 25px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.1);
+}
+
+.authGrid img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.authGrid form {
+    display: flex;
+    align-items: center;
+    padding: 50px 65px;
+}
+
+.authGrid form h1 {
+    color: white;
+    font-family: "Playfair Display", serif;
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 22px;
+    font-size: 30px;
+}
+
+.formBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 12.5px;
+    width: 100%;
+}
+
+.inputBox,
+.enterBtn {
+    background: #44403C;
+    display: flex;
+    align-items: center;
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
+    gap: 15px;
+    padding: 16px 18px;
+    border-radius: 11px;
+}
+
+.enterBtn {
+    background-color: #A3E635;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+
+    &:hover {
+        background-color: #84CC16;
+    }
+}
+
+.authGrid form input {
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    font-size: 15px;
+    width: 100%;
+}
+
+.inputBox:focus-within {
+    border: 2px solid #A8A29E;
+}
+
+.authGrid form input::placeholder {
+    color: #A8A29E
+}
+
+.authGrid form i {
+    color: #A8A29E;
+    font-size: 23px;
+}
+
+.authLink {
+    color: #A8A29E;
+    display: block;
+    padding-top: 22px;
+    font-size: 15px;
+    font-weight: 600;
+}
