@@ -60,6 +60,7 @@
 
 .enterBtn {
     background-color: #A3E635;
+    color: black;
     justify-content: center;
     cursor: pointer;
     font-weight: bold;
@@ -99,4 +100,18 @@
     padding-top: 22px;
     font-size: 15px;
     font-weight: 600;
+}
+
+.error {
+    background: #FECACA;
+    color: #B91C1C;
+    font-weight: bold;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
+    padding: 16px 18px;
+    border-radius: 11px;
+    font-size: 15px;
+}
+
+.error.errorNone {
+    display: none;
 }
