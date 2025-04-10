@@ -19,7 +19,7 @@ function SignUp() {
     setLoading(true);
 
     if (password !== retype) {
-      setError("Passwords do not match.");
+      setError("Passwords do not match!");
       setLoading(false);
     } else {
       try {
