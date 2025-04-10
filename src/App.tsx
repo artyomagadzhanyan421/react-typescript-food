@@ -42,7 +42,7 @@ function App() {
     const token = localStorage.getItem("token");
 
     if (token) {
-      await fetch("http://localhost:5000/auth/signout", {
+      await fetch("https://node-express-food.vercel.app/auth/signout", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
       });
