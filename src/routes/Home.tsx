@@ -35,6 +35,8 @@ function Home() {
     }
   };
 
+  document.title = `Welcome, ${username}`;
+
   return (
     <div>
       <p>Welcome, {username}!</p>
