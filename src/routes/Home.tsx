@@ -1,6 +1,10 @@
 function Home() {
+  const username = localStorage.getItem("username");
+
   return (
-    <div>Home</div>
+    <div>
+      <p>Welcome, {username}!</p>
+    </div>
   )
 }
 
