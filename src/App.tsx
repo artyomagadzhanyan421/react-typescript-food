@@ -11,8 +11,13 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    setToken(storedToken);
+    const handleTokenChange = () => {
+      const newToken = localStorage.getItem('token');
+      setToken(newToken);
+    };
+
+    window.addEventListener('tokenChange', handleTokenChange);
+    return () => window.removeEventListener('tokenChange', handleTokenChange);
   }, []);
 
   return (
