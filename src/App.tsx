@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router';
+import { Routes, Route, Navigate, useNavigate } from 'react-router';
+import { jwtDecode } from 'jwt-decode';
 
 // Routes
 import Home from './routes/Home';
@@ -9,6 +10,7 @@ import SignIn from './routes/SignIn';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleTokenUpdate = () => {
