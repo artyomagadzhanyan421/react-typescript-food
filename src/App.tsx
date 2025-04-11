@@ -8,6 +8,9 @@ import Home from './routes/Home';
 import SignUp from './routes/SignUp';
 import SignIn from './routes/SignIn';
 
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const navigate = useNavigate();
@@ -49,7 +52,7 @@ function App() {
     const token = localStorage.getItem("token");
 
     if (token) {
-      await fetch("https://node-express-food.vercel.app/auth/signout", {
+      await fetch(`${apiUrl}auth/signout`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
       });
