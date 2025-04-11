@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function SignUp() {
   const [show, setShow] = useState(false);
   const [reshow, setReshow] = useState(false);
@@ -23,7 +26,7 @@ function SignUp() {
       setLoading(false);
     } else {
       try {
-        const response = await fetch("https://node-express-food.vercel.app/auth/signup", {
+        const response = await fetch(`${apiUrl}auth/signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username, password }),

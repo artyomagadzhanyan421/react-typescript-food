@@ -3,8 +3,11 @@ import useFetch from "../hooks/useFetch";
 // CSS
 import "../styles/Recipes.css";
 
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Recipes() {
-    const { recipes, loading, error } = useFetch("https://node-express-food.vercel.app/recipes");
+    const { recipes, loading, error } = useFetch(`${apiUrl}recipes`);
 
     return (
         <div className="Recipes">

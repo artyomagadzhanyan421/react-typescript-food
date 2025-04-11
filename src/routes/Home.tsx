@@ -4,6 +4,9 @@ import { useNavigate } from "react-router";
 // Components
 import Recipes from "../components/Recipes";
 
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Home() {
   const [loading, setLoading] = useState(false);
 
@@ -16,7 +19,7 @@ function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://node-express-food.vercel.app/auth/signout", {
+      const response = await fetch(`${apiUrl}auth/signout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
