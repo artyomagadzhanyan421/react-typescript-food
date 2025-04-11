@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
+// CSS
 import "../styles/Auth.css";
+
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function SignIn() {
   const [show, setShow] = useState(false);
@@ -19,7 +23,7 @@ function SignIn() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://node-express-food.vercel.app/auth/signin", {
+      const res = await fetch(`${apiUrl}auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
