@@ -8,42 +8,51 @@ import Home from './routes/Home';
 import SignUp from './routes/SignUp';
 import SignIn from './routes/SignIn';
 
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    setToken(storedToken);
+    const handleTokenUpdate = () => {
+      const newToken = localStorage.getItem('token');
+      setToken(newToken);
 
-    if (storedToken) {
-      try {
-        const decoded: any = jwtDecode(storedToken);
-        const now = Date.now() / 1000;
+      if (newToken) {
+        try {
+          const decoded: any = jwtDecode(newToken);
+          const now = Date.now() / 1000;
 
-        if (decoded.exp < now) {
-          handleLogout(); // Token expired already
-        } else {
-          // Set timeout to auto-logout when it expires
-          const timeout = (decoded.exp - now) * 1000;
-          const logoutTimer = setTimeout(() => {
-            handleLogout();
-          }, timeout);
+          if (decoded.exp < now) {
+            handleLogout(); // Token expired
+          } else {
+            const timeout = (decoded.exp - now) * 1000;
+            const logoutTimer = setTimeout(() => {
+              handleLogout();
+            }, timeout);
 
-          return () => clearTimeout(logoutTimer); // cleanup
+            return () => clearTimeout(logoutTimer);
+          }
+        } catch (err) {
+          console.error("Invalid token");
+          handleLogout();
         }
-      } catch (err) {
-        console.error("Invalid token");
-        handleLogout();
       }
-    }
+    };
+
+    handleTokenUpdate(); // Run once on mount
+
+    window.addEventListener('tokenChange', handleTokenUpdate);
+    return () => window.removeEventListener('tokenChange', handleTokenUpdate);
   }, []);
 
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      await fetch("https://node-express-food.vercel.app/auth/signout", {
+      await fetch(`${apiUrl}auth/signout`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
       });
