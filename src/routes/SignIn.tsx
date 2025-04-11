@@ -37,7 +37,8 @@ function SignIn() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.username);
         localStorage.setItem("role", data.role);
-
+        
+        window.dispatchEvent(new Event("tokenChange"));
         setLoading(false);
         navigate("/");
       } else {
