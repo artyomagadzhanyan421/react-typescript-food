@@ -1,0 +1,31 @@
+.Home {
+    background-color: #1C1917;
+    color: white;
+    min-height: 100vh;
+}
+
+nav {
+    padding: 30px 50px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    flex-wrap: wrap;
+    max-width: 1250px;
+    gap: 25px;
+}
+
+.username {
+    background-color: #292524;
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    gap: 15px;
+    font-size: 15px;
+    font-weight: 500;
+}

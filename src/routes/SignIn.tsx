@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
+// CSS
 import "../styles/Auth.css";
+
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function SignIn() {
   const [show, setShow] = useState(false);
@@ -19,7 +23,7 @@ function SignIn() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://node-express-food.vercel.app/auth/signin", {
+      const res = await fetch(`${apiUrl}auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -50,7 +54,7 @@ function SignIn() {
   document.title = "Food Recipes | Sign In";
 
   return (
-    <div className="SignIn">
+    <div className="Auth">
       <div className="authGrid">
         <img src="https://www.onceuponachef.com/images/2019/07/Big-Italian-Salad-1200x1553.jpg" alt="image" />
         <form onSubmit={handleSubmit}>
@@ -67,7 +71,7 @@ function SignIn() {
               <i className={show ? "bx bx-hide" : "bx bx-show"} onClick={() => setShow(!show)} style={{ cursor: "pointer" }}></i>
             </div>
             <button className="enterBtn" disabled={loading}>
-              <i className={loading ? "bx bx-refresh bx-spin" : "bx bx-log-in"} style={{ color: "black" }}></i>
+              <i className={loading ? "bx bx-refresh bx-spin" : "bx bx-log-in-circle"} style={{ color: "black" }}></i>
               <span>{loading ? "Loading..." : "Enter an account"}</span>
             </button>
             <center>
