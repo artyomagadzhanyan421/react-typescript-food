@@ -40,11 +40,31 @@ function Recipes() {
                         }}
                         pagination={true}
                         modules={[EffectCoverflow]}
-                        className="mySwiper"
+                        className="recommend"
                     >
                         {recipes.map((recipe) => (
                             <SwiperSlide>
+                                <button className="mark">
+                                    <i className='bx bxs-book-bookmark' style={{ fontSize: 20 }}></i>
+                                </button>
                                 <img src={recipe.picture} />
+                                <div className="recipe-text">
+                                    <p style={{ fontWeight: "bold" }}>{recipe.title}</p>
+                                    <div className="recipe-time">
+                                        <div>
+                                            <i className='bx bx-time-five' style={{ fontSize: 19 }}></i>
+                                            <p>{recipe.time} min</p>
+                                        </div>
+                                        <div>
+                                            <i className='bx bx-like' style={{ fontSize: 19 }}></i>
+                                            <p>
+                                                {recipe.likes + recipe.dislikes === 0
+                                                    ? "0%"
+                                                    : `${Math.round((recipe.likes / (recipe.likes + recipe.dislikes)) * 100)}%`}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
