@@ -67,7 +67,7 @@ function SignIn() {
               <i className={show ? "bx bx-hide" : "bx bx-show"} onClick={() => setShow(!show)} style={{ cursor: "pointer" }}></i>
             </div>
             <button className="enterBtn" disabled={loading}>
-              <i className={loading ? "bx bx-refresh bx-spin" : "bx bx-log-in"} style={{ color: "black" }}></i>
+              <i className={loading ? "bx bx-refresh bx-spin" : "bx bx-log-in-circle"} style={{ color: "black" }}></i>
               <span>{loading ? "Loading..." : "Enter an account"}</span>
             </button>
             <center>

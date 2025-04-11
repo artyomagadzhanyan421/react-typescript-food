@@ -38,9 +38,16 @@ function Home() {
   document.title = `Welcome, ${username}`;
 
   return (
-    <div>
-      <p>Welcome, {username}!</p>
-      <button onClick={handleSignOut}>{loading ? "Loading..." : "Sign Out"}</button>
+    <div className="Home">
+      <div className="flex">
+        <div className="username">
+          <i className='bx bx-user-circle' style={{ fontSize: 23 }}></i>
+          <p>Hi, {username}!</p>
+        </div>
+        <button className="enterBtn" onClick={handleSignOut}>
+          {loading ? "Loading..." : "Sign Out"}
+        </button>
+      </div>
     </div>
   )
 }
