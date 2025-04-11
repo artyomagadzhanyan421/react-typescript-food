@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
+// Components
+import Recipes from "../components/Recipes";
+
 function Home() {
   const [loading, setLoading] = useState(false);
 
@@ -50,6 +53,7 @@ function Home() {
           </button>
         </div>
       </nav>
+      <Recipes />
     </div>
   )
 }
