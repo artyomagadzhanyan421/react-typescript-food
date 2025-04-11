@@ -14,6 +14,7 @@ function App() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
+    setToken(storedToken);
 
     if (storedToken) {
       try {
