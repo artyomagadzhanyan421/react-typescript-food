@@ -2,10 +2,11 @@
     background-color: #1C1917;
     color: white;
     min-height: 100vh;
+    padding: 0px 50px;
 }
 
 nav {
-    padding: 30px 50px;
+    padding: 30px 0px;
 }
 
 .flex {

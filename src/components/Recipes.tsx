@@ -1,4 +1,12 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow } from 'swiper/modules';
+
+// Hooks
 import useFetch from "../hooks/useFetch";
+
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
 // CSS
 import "../styles/Recipes.css";
@@ -19,11 +27,27 @@ function Recipes() {
                 <p>No recipes found!</p>
             ) : (
                 <div className="recipes-slider">
-                    {recipes.map((recipe) => (
-                        <div key={recipe._id}>
-                            <p>{recipe.title}</p>
-                        </div>
-                    ))}
+                    <h2>Recommended</h2>
+                    <Swiper
+                        effect={'coverflow'}
+                        grabCursor={true}
+                        slidesPerView={'auto'}
+                        coverflowEffect={{
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 0,
+                            modifier: 0,
+                        }}
+                        pagination={true}
+                        modules={[EffectCoverflow]}
+                        className="mySwiper"
+                    >
+                        {recipes.map((recipe) => (
+                            <SwiperSlide>
+                                <img src={recipe.picture} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
             )}
         </div>
