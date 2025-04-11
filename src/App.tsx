@@ -11,14 +11,52 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    const handleTokenChange = () => {
+    const handleTokenUpdate = () => {
       const newToken = localStorage.getItem('token');
       setToken(newToken);
+
+      if (newToken) {
+        try {
+          const decoded: any = jwtDecode(newToken);
+          const now = Date.now() / 1000;
+
+          if (decoded.exp < now) {
+            handleLogout(); // Token expired
+          } else {
+            const timeout = (decoded.exp - now) * 1000;
+            const logoutTimer = setTimeout(() => {
+              handleLogout();
+            }, timeout);
+
+            return () => clearTimeout(logoutTimer);
+          }
+        } catch (err) {
+          console.error("Invalid token");
+          handleLogout();
+        }
+      }
     };
 
-    window.addEventListener('tokenChange', handleTokenChange);
-    return () => window.removeEventListener('tokenChange', handleTokenChange);
+    handleTokenUpdate(); // Run once on mount
+
+    window.addEventListener('tokenChange', handleTokenUpdate);
+    return () => window.removeEventListener('tokenChange', handleTokenUpdate);
   }, []);
+
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      await fetch("https://node-express-food.vercel.app/auth/signout", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` }
+      });
+    }
+
+    localStorage.clear();
+    setToken(null);
+    navigate("/signin");
+  };
 
   return (
     <div className="App">
