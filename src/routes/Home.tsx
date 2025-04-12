@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 // Components
 import Recommended from "../components/Recommended";
+import Latest from "../components/Latest";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -57,6 +58,7 @@ function Home() {
         </div>
       </nav>
       <Recommended />
+      <Latest />
     </div>
   )
 }
