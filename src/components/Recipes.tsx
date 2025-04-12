@@ -32,6 +32,7 @@ function Recipes() {
                         effect={'coverflow'}
                         grabCursor={true}
                         slidesPerView={'auto'}
+                        spaceBetween={20}
                         coverflowEffect={{
                             rotate: 0,
                             stretch: 0,
@@ -44,12 +45,15 @@ function Recipes() {
                     >
                         {recipes.map((recipe) => (
                             <SwiperSlide>
-                                <button className="mark">
-                                    <i className='bx bxs-book-bookmark' style={{ fontSize: 20 }}></i>
-                                </button>
+                                <div className="recipeTop">
+                                    <p>{recipe.cuisine}</p>
+                                    <button className="mark">
+                                        <i className='bx bx-bookmark' style={{ fontSize: 20 }}></i>
+                                    </button>
+                                </div>
                                 <img src={recipe.picture} />
                                 <div className="recipe-text">
-                                    <p style={{ fontWeight: "bold" }}>{recipe.title}</p>
+                                    <p className='recipe-title'>{recipe.title}</p>
                                     <div className="recipe-time">
                                         <div>
                                             <i className='bx bx-time-five' style={{ fontSize: 19 }}></i>

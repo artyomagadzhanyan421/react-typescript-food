@@ -48,7 +48,7 @@ function Home() {
       <nav>
         <div className="flex">
           <div className="username">
-            <i className='bx bx-user-circle' style={{ fontSize: 23 }}></i>
+            <i className='bx bx-at' style={{ fontSize: 24 }}></i>
             <p>Hi, {username}!</p>
           </div>
           <button className="enterBtn" onClick={handleSignOut}>
