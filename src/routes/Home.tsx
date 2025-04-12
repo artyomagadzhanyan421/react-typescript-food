@@ -4,14 +4,10 @@ import { useNavigate } from "react-router";
 // Components
 import Recommended from "../components/Recommended";
 
-// Hooks
-import useFetch from "../hooks/useFetch";
-
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function Home() {
-  const { recipes, loading, error } = useFetch(`${apiUrl}recipes`);
   const [signout, setSignout] = useState(false);
 
   const username = localStorage.getItem("username");
@@ -60,7 +56,7 @@ function Home() {
           </button>
         </div>
       </nav>
-      <Recommended recipes={recipes} loading={loading} error={error} />
+      <Recommended />
     </div>
   )
 }

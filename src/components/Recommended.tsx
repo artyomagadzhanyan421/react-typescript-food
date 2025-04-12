@@ -10,16 +10,15 @@ import 'swiper/css/pagination';
 // CSS
 import "../styles/Recipes.css";
 
-// Types
-import TypeRecipe from '../types/TypeRecipe';
+// Hooks
+import useFetch from '../hooks/useFetch';
 
-interface TypeRecommended {
-    recipes: TypeRecipe[];
-    loading: boolean;
-    error: string | null;
-}
+//.env
+const apiUrl = import.meta.env.VITE_API_URL;
 
-function Recipes({ recipes, loading, error }: TypeRecommended) {
+function Recipes() {
+    const { recipes, loading, error } = useFetch(`${apiUrl}recipes/random?limit=10`);
+
     const prevRef = useRef(null);
     const nextRef = useRef(null);
 
