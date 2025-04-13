@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 
-// Types
-import TypeRecipe from "../types/TypeRecipe";
-
-function useFetch(url: string) {
-    const [recipes, setRecipes] = useState<TypeRecipe[]>([]);
+function useFetch<T>(url: string) {
+    const [recipes, setRecipes] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
