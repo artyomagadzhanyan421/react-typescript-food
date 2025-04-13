@@ -13,11 +13,14 @@ import "../styles/Recipes.css";
 // Hooks
 import useFetch from '../hooks/useFetch';
 
+// Types
+import TypeRecipe from "../types/TypeRecipe";
+
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function Latest() {
-    const { recipes, loading, error } = useFetch(`${apiUrl}recipes`);
+    const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes?limit=10`);
 
     const prevRef = useRef(null);
     const nextRef = useRef(null);
@@ -28,7 +31,7 @@ function Latest() {
                 <p>Loading...</p>
             ) : error ? (
                 <p>{error}</p>
-            ) : recipes.length === 0 ? (
+            ) : recipes?.length === 0 ? (
                 <p>No recipes found!</p>
             ) : (
                 <div className="recipes-slider">
@@ -66,9 +69,9 @@ function Latest() {
                         }}
                         className="recommend"
                     >
-                        {recipes.map((recipe) => (
+                        {recipes?.map((recipe) => (
                             <SwiperSlide key={recipe._id}>
-                                <Link to="/" style={{ color: 'white' }}>
+                                <Link to={`/recipe/${recipe._id}`} style={{ color: 'white' }}>
                                     <div className="recipeTop">
                                         <p>{recipe.cuisine}</p>
                                         <button className="mark">

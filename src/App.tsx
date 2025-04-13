@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import Home from './routes/Home';
 import SignUp from './routes/SignUp';
 import SignIn from './routes/SignIn';
+import Recipe from './routes/Recipe';
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -72,6 +73,10 @@ function App() {
         />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn />} />
+        <Route
+          path='/recipe/:id'
+          element={token ? <Recipe /> : <Navigate to="/signin" replace />}
+        />
       </Routes>
     </div>
   )
