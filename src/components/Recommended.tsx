@@ -7,6 +7,9 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
+// Components
+import LoadingSlider from './loading/LoadingSlider';
+
 // CSS
 import "../styles/Recipes.css";
 
@@ -28,7 +31,7 @@ function Recipes() {
     return (
         <div className="Recipes">
             {loading ? (
-                <p>Loading...</p>
+                <LoadingSlider />
             ) : error ? (
                 <p>{error}</p>
             ) : recipes?.length === 0 ? (

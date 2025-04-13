@@ -50,6 +50,7 @@ function Navbar() {
                         <p>Hi, {username}</p>
                     </div>
                     <button className="enterBtn" onClick={handleSignOut}>
+                        <i className={signout ? "bx bx-refresh bx-spin" : "bx bx-log-out-circle"} style={{ color: "black" }}></i>
                         {signout ? "Loading..." : "Sign Out"}
                     </button>
                 </div>
