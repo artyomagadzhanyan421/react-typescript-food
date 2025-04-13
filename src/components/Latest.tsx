@@ -34,7 +34,7 @@ function Latest() {
             ) : recipes?.length === 0 ? (
                 <p>No recipes found!</p>
             ) : (
-                <div className="recipes-slider">
+                <div>
                     <div className="slider-arrows">
                         <h2>Latest recipes</h2>
                         <div className="arrows">

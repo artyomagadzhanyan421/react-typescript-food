@@ -34,7 +34,7 @@ function Recipes() {
             ) : recipes?.length === 0 ? (
                 <p>No recipes found!</p>
             ) : (
-                <div className="recipes-slider">
+                <div>
                     <div className="slider-arrows">
                         <h2>Recommended</h2>
                         <div className="arrows">

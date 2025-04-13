@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
+// CSS
+import "../styles/Navbar.css";
+
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -44,7 +47,7 @@ function Navbar() {
                 <div className="flex">
                     <div className="username">
                         <i className='bx bx-at' style={{ fontSize: 24 }}></i>
-                        <p>Hi, {username}!</p>
+                        <p>Hi, {username}</p>
                     </div>
                     <button className="enterBtn" onClick={handleSignOut}>
                         {signout ? "Loading..." : "Sign Out"}
