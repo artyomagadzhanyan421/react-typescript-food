@@ -22,6 +22,7 @@ aside {
     position: absolute;
     outline: none;
     border: none;
+    pointer-events: none;
     opacity: 0;
     bottom: -70px;
     left: 0%;

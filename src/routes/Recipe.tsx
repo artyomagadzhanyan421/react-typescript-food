@@ -31,8 +31,33 @@ function Recipe() {
                 ) : !recipe ? (
                     <p>Recipe not found!</p>
                 ) : (
-                    <div>
-                        <p>{recipe.title}</p>
+                    <div className="recipe-data">
+                        <div className="recipe-picture">
+                            <div className="recipeTop">
+                                <p>{recipe.cuisine}</p>
+                                <button className="mark">
+                                    <i className='bx bx-bookmark' style={{ fontSize: 20 }}></i>
+                                </button>
+                            </div>
+                            <img src={recipe.picture} alt={recipe.picture} />
+                            <div className="recipe-text">
+                                <p className='recipe-title'>{recipe.title}</p>
+                                <div className="recipe-time">
+                                    <div>
+                                        <i className='bx bx-time-five' style={{ fontSize: 19 }}></i>
+                                        <p>{recipe.time} min</p>
+                                    </div>
+                                    <div>
+                                        <i className='bx bx-like' style={{ fontSize: 19 }}></i>
+                                        <p>
+                                            {recipe.likes + recipe.dislikes === 0
+                                                ? "0%"
+                                                : `${Math.round((recipe.likes / (recipe.likes + recipe.dislikes)) * 100)}%`}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
