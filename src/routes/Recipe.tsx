@@ -150,6 +150,24 @@ function Recipe() {
                                 ))}
                             </ul>
                         </div>
+                        <div className="details">
+                            <h2>Rating Details</h2>
+                            <div className="rate-flex">
+                                <div>
+                                    <i className='bx bxs-like' style={{ background: "#16A34A" }}></i>
+                                    <span>{recipe.likes} liked</span>
+                                </div>
+                                <div>
+                                    <i className='bx bxs-dislike' style={{ background: "#DC2626" }}></i>
+                                    <span>{recipe.dislikes} disliked</span>
+                                </div>
+                            </div>
+                            <div className="tags">
+                                {recipe.tags.map((tag) => (
+                                    <p className="tag" key={tag}>{tag}</p>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>

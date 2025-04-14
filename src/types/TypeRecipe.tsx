@@ -9,6 +9,7 @@ type TypeRecipe = {
     adds: number;
     description: string;
     ingredients: string[];
+    tags: string[];
 }
 
 export default TypeRecipe;

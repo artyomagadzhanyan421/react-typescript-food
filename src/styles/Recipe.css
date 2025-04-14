@@ -55,7 +55,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 14px;
-    margin: 20px 0px 35px 0px;
+    margin: 22px 0px 32px 0px;
 }
 
 .recipe-flex button,
@@ -84,7 +84,7 @@
 }
 
 .ingredients ul {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .ingredients li {
@@ -102,4 +102,40 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.rate-flex {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 20px 0px 30px 0px;
+}
+
+.rate-flex div {
+    color: #D6D3D1;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-weight: 500;
+}
+
+.rate-flex div i {
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tag {
+    background: #57534E;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.09);
 }
