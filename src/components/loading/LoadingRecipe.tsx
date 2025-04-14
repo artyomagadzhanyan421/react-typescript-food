@@ -18,7 +18,7 @@ function LoadingRecipe() {
                 </div>
                 <div className="recipe-block">
                     <Skeleton
-                        width={620}
+                        width="100%"
                         height={43.75}
                         borderRadius={8}
                         style={{ marginBottom: 2.5 }}
@@ -26,7 +26,7 @@ function LoadingRecipe() {
                         highlightColor='#78716C'
                     />
                     <Skeleton
-                        width={320}
+                        width="100%"
                         height={43.75}
                         borderRadius={8}
                         baseColor="#44403C"
@@ -71,7 +71,7 @@ function LoadingRecipe() {
                     />
                     <Skeleton
                         height={22}
-                        width={250}
+                        width="55%"
                         baseColor="#44403C"
                         highlightColor='#78716C'
                         style={{ borderRadius: 4 }}

@@ -96,7 +96,7 @@
 }
 
 .ingredients li:not(:nth-child(1)) {
-    margin-top: 12px;
+    margin-top: 11px;
 }
 
 .ingredients li img {
