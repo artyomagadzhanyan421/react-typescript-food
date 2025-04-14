@@ -50,7 +50,7 @@ function Navbar() {
                     <div className="username" onClick={() => setDrop(!drop)}>
                         <i className='bx bx-at' style={{ fontSize: 23 }}></i>
                         <p>Hi, {username}</p>
-                        <i className='bx bx-chevron-down' style={{ fontSize: 20 }}></i>
+                        <i className='bx bx-chevron-down' id={drop ? "rotate" : ""} style={{ fontSize: 20 }}></i>
                     </div>
                     <button className={drop ? "drop show" : "drop"} onClick={handleSignOut}>
                         <i className={signout ? "bx bx-refresh bx-spin" : "bx bx-log-out-circle"} style={{ fontSize: 23 }}></i>

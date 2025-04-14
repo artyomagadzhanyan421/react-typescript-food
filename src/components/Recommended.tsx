@@ -77,7 +77,7 @@ function Recipes() {
                                 <div className="recipeTop">
                                     <p>{recipe.cuisine}</p>
                                     <button className="mark">
-                                        <i className='bx bx-bookmark' style={{ fontSize: 20 }}></i>
+                                        <i className='bx bx-book-bookmark' style={{ fontSize: 20 }}></i>
                                     </button>
                                 </div>
                                 <Link to={`/recipe/${recipe._id}`} style={{ color: 'white' }}>

@@ -25,14 +25,14 @@ function LoadingSlider() {
                         width={38}
                         baseColor="#292524"
                         highlightColor='#57534E'
-                        style={{ borderRadius: "50%" }}
+                        circle
                     />
                     <Skeleton
                         height={38}
                         width={38}
                         baseColor="#292524"
                         highlightColor='#57534E'
-                        style={{ borderRadius: "50%" }}
+                        circle
                     />
                 </div>
             </div>
@@ -73,7 +73,7 @@ function LoadingSlider() {
                                 highlightColor='#78716C'
                                 height={46}
                                 width={46}
-                                style={{ borderRadius: "50%" }}
+                                circle
                             />
                         </div>
                         <div className="recipe-text loading">

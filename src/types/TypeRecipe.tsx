@@ -6,6 +6,9 @@ type TypeRecipe = {
     likes: number;
     dislikes: number;
     cuisine: string;
+    adds: number;
+    description: string;
+    ingredients: string[];
 }
 
 export default TypeRecipe;

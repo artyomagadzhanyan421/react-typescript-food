@@ -41,7 +41,7 @@ aside {
 aside ul {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 37.5px;
 }
 
 aside a {
@@ -62,7 +62,7 @@ aside a {
     text-wrap: nowrap;
     cursor: pointer;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
-    border-radius: 11px;
+    border-radius: 10px;
     padding: 15px;
     gap: 15px;
     font-size: 15px;
@@ -75,6 +75,10 @@ aside a {
 
 .bx-grid-alt {
     display: none;
+}
+
+#rotate {
+    transform: rotate(-180deg);
 }
 
 @media(max-width: 1000px) {
