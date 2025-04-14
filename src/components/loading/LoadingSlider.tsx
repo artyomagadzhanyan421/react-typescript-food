@@ -52,14 +52,12 @@ function LoadingSlider() {
                 className="mySwiper"
             >
                 {[...Array(4)].map((_, index) => (
-                    <SwiperSlide key={index}>
-                        <Skeleton
-                            height={350}
-                            width={297.5}
-                            style={{ borderRadius: 12.5 }}
-                            baseColor="#292524"
-                            highlightColor='#57534E'
-                        />
+                    <SwiperSlide style={{
+                        background: "#292524",
+                        borderRadius: 12.5,
+                        height: 350,
+                        width: 297.5
+                    }} key={index}>
                         <div className="recipeTop">
                             <Skeleton
                                 baseColor="#44403C"
@@ -90,7 +88,7 @@ function LoadingSlider() {
                                     height={22}
                                     width={150.06}
                                     baseColor="#44403C"
-                                    highlightColor='78716C'
+                                    highlightColor='#78716C'
                                 />
                             </div>
                         </div>

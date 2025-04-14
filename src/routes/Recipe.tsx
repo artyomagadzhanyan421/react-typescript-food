@@ -5,6 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 // Component
 import Navbar from "../components/Navbar";
+import LoadingRecipe from "../components/loading/LoadingRecipe";
 
 //Hooks 
 import useFetch from "../hooks/useFetch";
@@ -77,7 +78,7 @@ function Recipe() {
             <Navbar />
             <div className="Recipe">
                 {loading ? (
-                    <p>Loading...</p>
+                    <LoadingRecipe />
                 ) : error ? (
                     <p>{error}</p>
                 ) : !recipe ? (
