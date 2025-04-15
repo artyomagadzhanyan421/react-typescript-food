@@ -1,28 +1,96 @@
 nav {
-    height: 116px;
     display: flex;
     align-items: center;
+    margin: auto;
+    height: 116px;
+    max-width: 1250px;
+    gap: 50px;
 }
 
-.flex {
+aside {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: auto;
-    flex-wrap: wrap;
     width: 100%;
-    max-width: 1250px;
-    gap: 25px;
 }
 
-.username {
-    background-color: #292524;
+.drop-down {
+    position: relative;
+}
+
+.drop {
+    position: absolute;
+    outline: none;
+    border: none;
+    pointer-events: none;
+    opacity: 0;
+    bottom: -70px;
+    left: 0%;
+
+    &:hover {
+        background-color: #44403C;
+    }
+}
+
+.drop.show {
+    pointer-events: all;
+    opacity: 1;
+    bottom: -62.5px;
+}
+
+aside ul {
     display: flex;
     align-items: center;
+    gap: 37.5px;
+}
+
+aside a {
+    color: white;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    gap: 10px;
+}
+
+.username,
+.drop {
+    background-color: #292524;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-wrap: nowrap;
+    cursor: pointer;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
     border-radius: 10px;
     padding: 15px;
     gap: 15px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 550;
+
+    &:hover {
+        background-color: #44403C;
+    }
+}
+
+.bx-grid-alt {
+    display: none;
+}
+
+#rotate {
+    transform: rotate(-180deg);
+}
+
+@media(max-width: 1000px) {
+    aside {
+        display: none;
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    .bx-grid-alt {
+        display: block;
+    }
 }

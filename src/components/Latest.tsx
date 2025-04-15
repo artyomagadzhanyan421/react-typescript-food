@@ -7,6 +7,9 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
+// Components
+import LoadingSlider from './loading/LoadingSlider';
+
 // CSS
 import "../styles/Recipes.css";
 
@@ -28,7 +31,7 @@ function Latest() {
     return (
         <div className="Recipes">
             {loading ? (
-                <p>Loading...</p>
+                <LoadingSlider />
             ) : error ? (
                 <p>{error}</p>
             ) : recipes?.length === 0 ? (
@@ -57,7 +60,6 @@ function Latest() {
                             depth: 0,
                             modifier: 0,
                         }}
-                        pagination={true}
                         modules={[EffectCoverflow, Navigation]}
                         onInit={(swiper) => {
                             // @ts-ignore
@@ -71,13 +73,13 @@ function Latest() {
                     >
                         {recipes?.map((recipe) => (
                             <SwiperSlide key={recipe._id}>
+                                <div className="recipeTop">
+                                    <p>{recipe.cuisine}</p>
+                                    <button className="mark">
+                                        <i className='bx bx-book-bookmark' style={{ fontSize: 20 }}></i>
+                                    </button>
+                                </div>
                                 <Link to={`/recipe/${recipe._id}`} style={{ color: 'white' }}>
-                                    <div className="recipeTop">
-                                        <p>{recipe.cuisine}</p>
-                                        <button className="mark">
-                                            <i className='bx bx-bookmark' style={{ fontSize: 20 }}></i>
-                                        </button>
-                                    </div>
                                     <img src={recipe.picture} alt={recipe.title} />
                                     <div className="recipe-text">
                                         <p className='recipe-title'>{recipe.title}</p>

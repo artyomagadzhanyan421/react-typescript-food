@@ -3,3 +3,154 @@
     max-width: 1250px;
     padding: 55px 0px;
 }
+
+.recipe-data {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 15px;
+    max-width: 700px;
+}
+
+.recipe-picture {
+    background: #292524;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
+    border-radius: 15px;
+    height: 450px;
+}
+
+.recipeTop.adminTop {
+    justify-content: initial;
+    flex-direction: column;
+    width: fit-content;
+    left: initial;
+    right: 0%;
+    gap: 10px;
+}
+
+.recipe-picture img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.mark.trash {
+    color: #FEF2F2;
+    background: #B91C1C;
+}
+
+.recipe-block,
+.ingredients,
+.details {
+    background-color: #292524;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
+}
+
+.recipe-time.recipeObj {
+    background-color: white;
+    padding: 15px;
+    border-radius: 50px;
+    margin-top: 0px;
+    gap: 15px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
+}
+
+.recipe-name {
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 1.25em;
+}
+
+.recipe-flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 22px 0px 32px 0px;
+}
+
+.recipe-flex button,
+.recipe-flex div {
+    background: #44403C;
+    color: white;
+    display: flex;
+    align-items: center;
+    border: none;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 550;
+    font-size: 15px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.025);
+}
+
+.recipe-flex button:hover {
+    background: #57534E;
+}
+
+.reipe-desc {
+    color: #D6D3D1;
+    line-height: 1.65em;
+    font-size: 15.5px;
+}
+
+.ingredients ul {
+    margin-top: 20px;
+}
+
+.ingredients li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 500;
+}
+
+.ingredients li:not(:nth-child(1)) {
+    margin-top: 11px;
+}
+
+.ingredients li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.rate-flex {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 20px 0px 30px 0px;
+}
+
+.rate-flex div {
+    color: #D6D3D1;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-weight: 500;
+}
+
+.rate-flex div i {
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tag {
+    background: #57534E;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.09);
+}
