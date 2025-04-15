@@ -21,10 +21,24 @@
     height: 450px;
 }
 
+.recipeTop.adminTop {
+    justify-content: initial;
+    flex-direction: column;
+    width: fit-content;
+    left: initial;
+    right: 0%;
+    gap: 10px;
+}
+
 .recipe-picture img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.mark.trash {
+    color: #FEF2F2;
+    background: #B91C1C;
 }
 
 .recipe-block,

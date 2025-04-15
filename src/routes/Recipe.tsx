@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -22,9 +22,16 @@ const imgUrl = import.meta.env.VITE_UNSPLASH_API_KEY;
 
 function Recipe() {
     const { id } = useParams();
+    const navigate = useNavigate();
+
+    const role = localStorage.getItem("role");
+    const token = localStorage.getItem("token");
+
     const [copied, setCopied] = useState(false);
-    const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
+    const [deleting, setDeleting] = useState(false);
     const [loadingImg, setLoadingImg] = useState(true);
+
+    const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
 
     const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
@@ -73,6 +80,31 @@ function Recipe() {
         fetchIngredientImages();
     }, [recipe]);
 
+    const handleDelete = async () => {
+        if (!token || !id) return;
+        setDeleting(true);
+        try {
+            const res = await fetch(`${apiUrl}recipes/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            if (res.ok) {
+                navigate("/");
+            } else {
+                const data = await res.json();
+                console.error(data.message);
+                alert(data.message);
+                setDeleting(false);
+            }
+        } catch (err) {
+            console.error("Error deleting recipe:", err);
+            setDeleting(false);
+        }
+    };
+
     return (
         <div className="Home">
             <Navbar />
@@ -86,6 +118,13 @@ function Recipe() {
                 ) : (
                     <div className="recipe-data">
                         <div className="recipe-picture">
+                            {role === "admin" && (
+                                <div className="recipeTop adminTop">
+                                    <button className="mark trash" onClick={handleDelete} disabled={deleting}>
+                                        <i className={deleting ? "bx bx-refresh bx-spin" : "bx bx-trash"} style={{ fontSize: 20 }}></i>
+                                    </button>
+                                </div>
+                            )}
                             <img src={recipe.picture} alt={recipe.picture} />
                             <div className="recipe-text">
                                 <div className="recipe-time recipeObj">
