@@ -8,6 +8,7 @@ import Home from './routes/Home';
 import SignUp from './routes/SignUp';
 import SignIn from './routes/SignIn';
 import Recipe from './routes/Recipe';
+import Create from './routes/Create';
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -76,6 +77,17 @@ function App() {
         <Route
           path='/recipe/:id'
           element={token ? <Recipe /> : <Navigate to="/signin" replace />}
+        />
+        <Route
+          path='/create'
+          element={
+            token ? (() => {
+              const decoded: any = jwtDecode(token);
+              return decoded.role === 'admin'
+                ? <Create />
+                : <Navigate to="/" replace />;
+            })() : <Navigate to="/signin" replace />
+          }
         />
       </Routes>
     </div>

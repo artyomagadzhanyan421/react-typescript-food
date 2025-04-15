@@ -35,6 +35,18 @@ function Recipe() {
 
     const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
+    {
+        loading ? (
+            document.title = "Loading..."
+        ) : error ? (
+            document.title = `${error}`
+        ) : !recipe ? (
+            document.title = "Not Found!"
+        ) : (
+            document.title = `Food Recipes | ${recipe.title}`
+        )
+    }
+
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(window.location.href);
