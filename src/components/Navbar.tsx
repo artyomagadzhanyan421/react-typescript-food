@@ -14,6 +14,7 @@ function Navbar() {
 
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
 
     const navigate = useNavigate();
 
@@ -80,10 +81,14 @@ function Navbar() {
                             </a>
                         </li>
                     </ul>
-                    <button className="enterBtn navBtn">
-                        <i className="bx bx-plus-circle" style={{ color: "black" }}></i>
-                        <span>Let's cook...</span>
-                    </button>
+                    {role === "admin" ? (
+                        <Link to="/create" className="enterBtn navBtn">
+                            <i className="bx bx-plus-circle" style={{ color: "black" }}></i>
+                            <span>Let's cook...</span>
+                        </Link>
+                    ) : (
+                        <span>User</span>
+                    )}
                 </aside>
                 <i
                     className='bx bx-grid-alt'

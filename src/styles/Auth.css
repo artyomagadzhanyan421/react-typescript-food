@@ -45,6 +45,17 @@
     width: 100%;
 }
 
+.formBlock.createForm {
+    background-color: #292524;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
+}
+
+.formBlock.createForm h2 {
+    margin-bottom: 22px;
+}
+
 .inputBox,
 .enterBtn {
     background: #44403C;
@@ -70,7 +81,21 @@
     }
 }
 
-.authGrid form input {
+.enterBtn.reset {
+    color: #FEF2F2;
+    background: #B91C1C;
+
+    &:hover {
+        background-color: #991B1B;
+    }
+}
+
+.btnFlex {
+    display: flex;
+    gap: 12.5px;
+}
+
+.inputBox input {
     color: white;
     background: none;
     border: none;
@@ -84,11 +109,11 @@
     border: 2px solid #A8A29E;
 }
 
-.authGrid form input::placeholder {
+.inputBox input::placeholder {
     color: #A8A29E
 }
 
-.authGrid form i,
+.inputBox i,
 .enterBtn i {
     color: #A8A29E;
     font-size: 23px;

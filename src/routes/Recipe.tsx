@@ -35,6 +35,18 @@ function Recipe() {
 
     const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
+    {
+        loading ? (
+            document.title = "Loading..."
+        ) : error ? (
+            document.title = `${error}`
+        ) : !recipe ? (
+            document.title = "Not Found!"
+        ) : (
+            document.title = `Food Recipes | ${recipe.title}`
+        )
+    }
+
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(window.location.href);
@@ -91,10 +103,12 @@ function Recipe() {
                 }
             });
 
+            const data = await res.json();
+
             if (res.ok) {
+                alert(data.message);
                 navigate("/");
             } else {
-                const data = await res.json();
                 console.error(data.message);
                 alert(data.message);
                 setDeleting(false);
