@@ -103,10 +103,12 @@ function Recipe() {
                 }
             });
 
+            const data = await res.json();
+
             if (res.ok) {
+                alert(data.message);
                 navigate("/");
             } else {
-                const data = await res.json();
                 console.error(data.message);
                 alert(data.message);
                 setDeleting(false);
