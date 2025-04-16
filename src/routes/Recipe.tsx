@@ -182,6 +182,8 @@ function Recipe() {
                                 </button>
                             </div>
                             <p className="reipe-desc">{recipe.description}</p>
+
+                            {/* dangerouslySetInnerHTML={{ __html: recipe.instructions }} */}
                         </div>
                         <div className="ingredients">
                             <h2>Ingredients</h2>

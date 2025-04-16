@@ -41,6 +41,7 @@ aside {
 aside ul {
     display: flex;
     align-items: center;
+    list-style: none;
     gap: 37.5px;
 }
 

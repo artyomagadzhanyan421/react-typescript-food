@@ -1,6 +1,13 @@
 import { useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router";
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+
+// Components
 import Navbar from "../components/Navbar";
+
+// CSS
+import "../styles/Create.css";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -16,11 +23,20 @@ function Create() {
   const [tags, setTags] = useState("");
   const [cuisine, setCuisine] = useState('');
   const [picture, setPicture] = useState<File | null>(null);
+  const [instructions, setInstructions] = useState("");
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   document.title = "Food Recipes | Create recipe";
+
+  const editor = useEditor({
+    extensions: [StarterKit],
+    content: "",
+    onUpdate({ editor }) {
+      setInstructions(editor.getHTML());
+    },
+  });
 
   const handlePictureChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -47,6 +63,7 @@ function Create() {
       formData.append("tags", tags);
       formData.append("cuisine", cuisine);
       formData.append("picture", picture);
+      formData.append("instructions", instructions);
 
       const res = await fetch(`${apiUrl}recipes`, {
         method: "POST",
@@ -79,42 +96,71 @@ function Create() {
         <div className="recipe-data">
           <form className="formBlock createForm" onSubmit={handleCreate}>
             <center><h2>Create recipe</h2></center>
-            
             <p className="error" style={{ display: error ? "" : "none" }}>{error}</p>
-
             <div className="inputBox">
               <i className='bx bx-image-alt'></i>
               <input type="file" placeholder="Picture*" onChange={handlePictureChange} required />
             </div>
-
             <div className="inputBox">
               <i className='bx bx-bowl-rice'></i>
               <input type="text" placeholder="Title*" value={title} onChange={e => setTitle(e.target.value)} required />
             </div>
-
             <div className="inputBox">
               <i className='bx bx-message-square-dots'></i>
               <input type="text" placeholder="Description*" value={desc} onChange={e => setDesc(e.target.value)} required />
             </div>
-
             <div className="inputBox">
               <i className='bx bx-time-five'></i>
               <input type="number" placeholder="Time (in minutes)*" value={time} onChange={e => setTime(e.target.value)} required />
             </div>
-
             <div className="inputBox">
               <i className='bx bx-food-menu'></i>
               <input type="text" placeholder="Ingredients (with a comma)*" value={ingredients} onChange={e => setIngredients(e.target.value)} required />
             </div>
-
             <div className="inputBox">
               <i className='bx bx-hash'></i>
               <input type="text" placeholder="Tags (with a comma)*" value={tags} onChange={e => setTags(e.target.value)} required />
             </div>
-
             <div className="inputBox">
               <i className='bx bx-map'></i>
               <input type="text" placeholder="Cuisine*" value={cuisine} onChange={e => setCuisine(e.target.value)} required />
+            </div>
+
+            {editor && (
+              <div className="tiptap-toolbar">
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+                  className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+                >
+                  <i className='bx bx-heading' style={{ fontSize: 20 }}></i>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleItalic().run()}
+                  className={editor.isActive('italic') ? 'is-active' : ''}
+                >
+                  <i className='bx bx-italic' style={{ fontSize: 20 }} ></i>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleBulletList().run()}
+                  className={editor.isActive('bulletList') ? 'is-active' : ''}
+                >
+                  <i className='bx bx-list-ul' style={{ fontSize: 20 }} ></i>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                  className={editor.isActive('orderedList') ? 'is-active' : ''}
+                >
+                  <i className='bx bx-list-ol' style={{ fontSize: 20 }} ></i>
+                </button>
+              </div>
+            )}
+
+            <div className="tiptap-textarea">
+              <EditorContent editor={editor} />
             </div>
 
             <div className="btnFlex">
@@ -134,7 +180,10 @@ function Create() {
                   setTags("");
                   setCuisine("");
                   setPicture(null);
-                  setError("");
+                  setInstructions("");
+                  if (editor) {
+                    editor.commands.setContent("");
+                  }
                 }}
               >
                 <i className="bx bx-reset" style={{ color: "white" }}></i>
