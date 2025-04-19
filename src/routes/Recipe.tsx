@@ -30,6 +30,7 @@ function Recipe() {
     const [copied, setCopied] = useState(false);
     const [deleting, setDeleting] = useState(false);
     const [loadingImg, setLoadingImg] = useState(true);
+    const [toggle, setToggle] = useState(false);
 
     const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
 
@@ -182,8 +183,23 @@ function Recipe() {
                                 </button>
                             </div>
                             <p className="reipe-desc">{recipe.description}</p>
-
-                            {/* dangerouslySetInnerHTML={{ __html: recipe.instructions }} */}
+                            <button className="enterBtn instBtn" onClick={(() => setToggle(!toggle))}>
+                                <i className='bx bx-bowl-rice' style={{ color: "black" }}></i>
+                                <span>Instructions</span>
+                            </button>
+                            <div className={toggle ? "overlay pop" : "overlay"}>
+                                <div className="instructions">
+                                    <div className="slider-arrows">
+                                        <h2 style={{ fontSize: 25 }}>Instructions</h2>
+                                        <i
+                                            className='bx bx-x-circle'
+                                            style={{ cursor: "pointer", fontSize: 23 }}
+                                            onClick={(() => setToggle(!toggle))}
+                                        ></i>
+                                    </div>
+                                    <p dangerouslySetInnerHTML={{ __html: recipe.instructions }} />
+                                </div>
+                            </div>
                         </div>
                         <div className="ingredients">
                             <h2>Ingredients</h2>

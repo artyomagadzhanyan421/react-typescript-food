@@ -17,7 +17,7 @@
     overflow: hidden;
     position: relative;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
-    border-radius: 15px;
+    border-radius: 20px;
     height: 450px;
 }
 
@@ -43,10 +43,11 @@
 
 .recipe-block,
 .ingredients,
-.details {
+.details,
+.instructions {
     background-color: #292524;
     padding: 40px;
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
 }
 
@@ -94,8 +95,13 @@
 
 .reipe-desc {
     color: #D6D3D1;
-    line-height: 1.65em;
+    line-height: 1.8em;
     font-size: 15.5px;
+}
+
+.enterBtn.instBtn {
+    width: 100%;
+    margin-top: 32px;
 }
 
 .ingredients ul {
@@ -153,4 +159,48 @@
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.09);
+}
+
+.overlay {
+    position: fixed;
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    background: rgb(28, 25, 23, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 116px 25px;
+    height: 100vh;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    z-index: 1;
+}
+
+.overlay.pop {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.overlay.pop .instructions {
+    transform: translateY(0px);
+}
+
+.instructions {
+    margin: auto;
+    max-width: 700px;
+    transform: translateY(10px);
+}
+
+.instructions ul,
+.instructions ol {
+    margin: 0px 25px;
+}
+
+.instructions p {
+    color: #D6D3D1;
+    line-height: 1.75em;
+}
+
+.instructions p:empty {
+    height: 25px;
 }
