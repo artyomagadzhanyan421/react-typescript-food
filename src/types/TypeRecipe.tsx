@@ -10,6 +10,7 @@ type TypeRecipe = {
     description: string;
     ingredients: string[];
     tags: string[];
+    instructions: string;
 }
 
 export default TypeRecipe;

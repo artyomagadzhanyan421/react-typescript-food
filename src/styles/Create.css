@@ -1,0 +1,47 @@
+.ProseMirror,
+.tiptap-toolbar button {
+    color: white;
+    background: #44403C;
+    border: none;
+    outline: none;
+    overflow: auto;
+    border: 2px solid transparent;
+    font-weight: 500;
+    height: 300px;
+    font-size: 15px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+    margin-left: 25px;
+}
+
+.ProseMirror h1 {
+    line-height: 1.2em;
+    font-size: 26px;
+}
+
+.tiptap-toolbar button {
+    height: initial;
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    border-radius: 7.5px;
+}
+
+.ProseMirror:focus-within {
+    border: 2px solid #A8A29E;
+}
+
+.tiptap-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.tiptap-toolbar button.is-active {
+    border: 2px solid #A8A29E;
+}
