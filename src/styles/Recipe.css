@@ -41,6 +41,11 @@
     background: #B91C1C;
 }
 
+.mark.edit {
+    color: #15803D;
+    background: #F0FDF4;
+}
+
 .recipe-block,
 .ingredients,
 .details,

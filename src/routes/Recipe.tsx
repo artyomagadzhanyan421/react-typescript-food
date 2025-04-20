@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import { Link } from "react-router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -138,6 +139,9 @@ function Recipe() {
                                     <button className="mark trash" onClick={handleDelete} disabled={deleting}>
                                         <i className={deleting ? "bx bx-refresh bx-spin" : "bx bx-trash"} style={{ fontSize: 20 }}></i>
                                     </button>
+                                    <Link to={`/edit/${recipe._id}`} className="mark edit">
+                                        <i className='bx bx-edit' style={{ fontSize: 20 }}></i>
+                                    </Link>
                                 </div>
                             )}
                             <img src={recipe.picture} alt={recipe.picture} />
