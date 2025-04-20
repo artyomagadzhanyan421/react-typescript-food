@@ -96,7 +96,10 @@ function Create() {
         <div className="recipe-data">
           <form className="formBlock createForm" onSubmit={handleCreate}>
             <center><h2>Create recipe</h2></center>
-            <p className="error" style={{ display: error ? "" : "none" }}>{error}</p>
+            <div className="error" style={{ display: error ? "" : "none" }}>
+              <i className='bx bx-error-circle'></i>
+              <p>{error}</p>
+            </div>
             <div className="inputBox">
               <i className='bx bx-image-alt'></i>
               <input type="file" placeholder="Picture*" onChange={handlePictureChange} required />

@@ -128,9 +128,15 @@ function Recipe() {
                 {loading ? (
                     <LoadingRecipe />
                 ) : error ? (
-                    <p>{error}</p>
+                    <div className="error" style={{ width: "fit-content" }}>
+                        <i className='bx bx-error-circle'></i>
+                        <span>Failde to fetch a recipe, please refresh the page!</span>
+                    </div>
                 ) : !recipe ? (
-                    <p>Recipe not found!</p>
+                    <div className="error" style={{ width: "fit-content" }}>
+                        <i className='bx bx-error-circle'></i>
+                        <span>No recipe found, please try again later!</span>
+                    </div>
                 ) : (
                     <div className="recipe-data">
                         <div className="recipe-picture">

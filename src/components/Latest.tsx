@@ -33,9 +33,15 @@ function Latest() {
             {loading ? (
                 <LoadingSlider />
             ) : error ? (
-                <p>{error}</p>
+                <div className="error" style={{ width: "fit-content" }}>
+                    <i className='bx bx-error-circle'></i>
+                    <span>{error}, please refresh the page!</span>
+                </div>
             ) : recipes?.length === 0 ? (
-                <p>No recipes found!</p>
+                <div className="error" style={{ width: "fit-content" }}>
+                    <i className='bx bx-error-circle'></i>
+                    <span>No recipes found, please try again later!</span>
+                </div>
             ) : (
                 <div>
                     <div className="slider-arrows">

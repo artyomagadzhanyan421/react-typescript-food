@@ -16,7 +16,7 @@ function useFetch<T>(url: string) {
                 });
 
                 if (!res.ok) {
-                    throw new Error("Failed to fetch recipes!");
+                    throw new Error("Failed to fetch recipes");
                 }
 
                 const data = await res.json();

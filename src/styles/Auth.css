@@ -131,10 +131,18 @@
     background: #FECACA;
     color: #B91C1C;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    line-height: 1.3em;
+    gap: 15px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
     padding: 16px 18px;
     border-radius: 11px;
     font-size: 15px;
+}
+
+.error i {
+    font-size: 23px;
 }
 
 .error.errorNone {

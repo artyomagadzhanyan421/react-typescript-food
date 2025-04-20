@@ -130,7 +130,10 @@ function Edit() {
           <div className="recipe-data">
             <form className="formBlock createForm" onSubmit={handleSubmit}>
               <center><h2 style={{ width: "fit-content" }}>Edit recipe</h2></center>
-              <p className="error" style={{ display: formError ? "" : "none" }}>{formError}</p>
+              <div className="error" style={{ display: formError ? "" : "none" }}>
+                <i className='bx bx-error-circle'></i>
+                <p>{formError}</p>
+              </div>
               <div className="inputBox">
                 <i className='bx bx-image-alt'></i>
                 <input

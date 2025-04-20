@@ -57,7 +57,10 @@ function SignUp() {
         <form onSubmit={handleSubmit}>
           <div className="formBlock">
             <h1>Create an account</h1>
-            <p className="error" style={{ display: error ? "" : "none" }}>{error}</p>
+            <div className="error" style={{ display: error ? "" : "none" }}>
+              <i className='bx bx-error-circle'></i>
+              <p>{error}</p>
+            </div>
             <div className="inputBox">
               <i className='bx bx-user-circle'></i>
               <input type="text" placeholder="Create username*" value={username} onChange={e => setUsername(e.target.value)} required />
