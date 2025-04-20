@@ -18,7 +18,7 @@ import "../styles/Recipe.css";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
-const imgUrl = import.meta.env.VITE_UNSPLASH_API_KEY;
+const imgUrl = import.meta.env.VITE_PEXELS_API_KEY;
 
 function Recipe() {
     const { id } = useParams();
