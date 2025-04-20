@@ -66,9 +66,9 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#">
+                            <Link to="/explore">
                                 <span>Explore</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#">

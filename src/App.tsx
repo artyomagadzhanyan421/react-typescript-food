@@ -10,6 +10,7 @@ import SignIn from './routes/SignIn';
 import Recipe from './routes/Recipe';
 import Create from './routes/Create';
 import Edit from './routes/Edit';
+import Explore from './routes/Explore';
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -78,6 +79,10 @@ function App() {
         <Route
           path='/recipe/:id'
           element={token ? <Recipe /> : <Navigate to="/signin" replace />}
+        />
+        <Route
+          path='/explore'
+          element={token ? <Explore /> : <Navigate to="/signin" replace />}
         />
         <Route
           path='/create'
