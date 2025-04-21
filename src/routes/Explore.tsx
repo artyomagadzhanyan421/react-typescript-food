@@ -14,7 +14,7 @@ import TypeRecipe from "../types/TypeRecipe";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function Explore() {
-    const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes?limit=10`);
+    const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes/`);
 
     document.title = "Food Recipes | Explore";
 

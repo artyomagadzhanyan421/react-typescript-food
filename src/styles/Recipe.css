@@ -21,12 +21,9 @@
     height: 450px;
 }
 
-.recipeTop.adminTop {
-    justify-content: initial;
+.adminFuncs {
+    display: flex;
     flex-direction: column;
-    width: fit-content;
-    left: initial;
-    right: 0%;
     gap: 10px;
 }
 
