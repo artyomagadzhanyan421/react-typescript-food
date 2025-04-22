@@ -1,16 +1,9 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow } from 'swiper/modules';
-
-function LoadingSlider() {
+function LoadingExplore() {
     return (
-        <div className="LoadingSlider">
+        <div className="LoadingExplore">
             <div className="slider-arrows">
                 <Skeleton
                     height={36.8}
@@ -19,40 +12,10 @@ function LoadingSlider() {
                     baseColor="#292524"
                     highlightColor='#57534E'
                 />
-                <div className="arrows">
-                    <Skeleton
-                        height={38}
-                        width={38}
-                        baseColor="#292524"
-                        highlightColor='#57534E'
-                        circle
-                    />
-                    <Skeleton
-                        height={38}
-                        width={38}
-                        baseColor="#292524"
-                        highlightColor='#57534E'
-                        circle
-                    />
-                </div>
             </div>
-            <Swiper
-                effect={'coverflow'}
-                grabCursor={true}
-                slidesPerView={'auto'}
-                spaceBetween={20}
-                coverflowEffect={{
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 0,
-                    modifier: 0,
-                    slideShadows: true,
-                }}
-                modules={[EffectCoverflow]}
-                className="mySwiper"
-            >
-                {[...Array(4)].map((_, index) => (
-                    <SwiperSlide style={{
+            <div className="explore">
+                {[...Array(6)].map((_, index) => (
+                    <div className="recipe" style={{
                         background: "#292524",
                         borderRadius: 12.5,
                     }} key={index}>
@@ -90,11 +53,11 @@ function LoadingSlider() {
                                 />
                             </div>
                         </div>
-                    </SwiperSlide>
+                    </div>
                 ))}
-            </Swiper>
+            </div>
         </div>
     )
 }
 
-export default LoadingSlider
+export default LoadingExplore

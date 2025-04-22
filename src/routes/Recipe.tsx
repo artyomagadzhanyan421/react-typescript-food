@@ -140,16 +140,19 @@ function Recipe() {
                 ) : (
                     <div className="recipe-data">
                         <div className="recipe-picture">
-                            {role === "admin" && (
-                                <div className="recipeTop adminTop">
-                                    <button className="mark trash" onClick={handleDelete} disabled={deleting}>
-                                        <i className={deleting ? "bx bx-refresh bx-spin" : "bx bx-trash"} style={{ fontSize: 20 }}></i>
-                                    </button>
-                                    <Link to={`/edit/${recipe._id}`} className="mark edit">
-                                        <i className='bx bx-edit' style={{ fontSize: 20 }}></i>
-                                    </Link>
-                                </div>
-                            )}
+                            <div className="recipeTop adminTop">
+                                <p>{recipe.cuisine}</p>
+                                {role === "admin" && (
+                                    <div className="adminFuncs">
+                                        <button className="mark trash" onClick={handleDelete} disabled={deleting}>
+                                            <i className={deleting ? "bx bx-refresh bx-spin" : "bx bx-trash"} style={{ fontSize: 20 }}></i>
+                                        </button>
+                                        <Link to={`/edit/${recipe._id}`} className="mark edit">
+                                            <i className='bx bx-edit' style={{ fontSize: 20 }}></i>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
                             <img src={recipe.picture} alt={recipe.picture} />
                             <div className="recipe-text">
                                 <div className="recipe-time recipeObj">
@@ -175,10 +178,6 @@ function Recipe() {
                         <div className="recipe-block">
                             <p className="recipe-name">{recipe.title}</p>
                             <div className="recipe-flex">
-                                <div>
-                                    <i className='bx bx-food-menu' style={{ fontSize: 22.5 }}></i>
-                                    <p>{recipe.cuisine}</p>
-                                </div>
                                 <button style={{ cursor: "pointer" }}>
                                     <i className='bx bx-book-bookmark' style={{ fontSize: 22.5 }}></i>
                                     <p>Add</p>
@@ -186,6 +185,10 @@ function Recipe() {
                                 <button style={{ cursor: "pointer" }}>
                                     <i className='bx bx-like' style={{ fontSize: 22.5 }}></i>
                                     <p>Like</p>
+                                </button>
+                                <button style={{ cursor: "pointer" }}>
+                                    <i className='bx bx-dislike' style={{ fontSize: 22.5 }}></i>
+                                    <p>Dislike</p>
                                 </button>
                                 <button style={{ cursor: "pointer" }} onClick={handleCopy}>
                                     <i className={copied ? "bx bx-check-circle" : "bx bx-share-alt"} style={{ fontSize: 22.5 }}></i>
