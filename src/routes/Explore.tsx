@@ -1,20 +1,79 @@
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router";
-
-// Components
 import Navbar from "../components/Navbar";
 import LoadingExplore from "../components/loading/LoadingExplore";
-
-// Hooks
-import useFetch from '../hooks/useFetch';
-
-// Types
 import TypeRecipe from "../types/TypeRecipe";
+import useFetch from "../hooks/useFetch";
 
-//.env
 const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Explore() {
-    const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes/`);
+    const { recipes: initialRecipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes?skip=0&limit=6`);
+
+    const [allRecipes, setAllRecipes] = useState<TypeRecipe[]>([]);
+    const [skip, setSkip] = useState(6);
+    const [isFetchingMore, setIsFetchingMore] = useState(false);
+    const [fetchMoreError, setFetchMoreError] = useState("");
+    const [reachedEnd, setReachedEnd] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+
+    const observerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        if (initialRecipes) {
+            setAllRecipes(initialRecipes);
+        }
+    }, [initialRecipes]);
+
+    const loadMoreRecipes = useCallback(async () => {
+        try {
+            setIsFetchingMore(true);
+            setFetchMoreError("");
+
+            const token = localStorage.getItem("token");
+            const res = await fetch(`${apiUrl}recipes?skip=${skip}&limit=6`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch recipes!");
+            }
+
+            const newRecipes: TypeRecipe[] = await res.json();
+
+            if (newRecipes.length < 6) {
+                setHasMore(false);
+                setReachedEnd(true);
+            }
+
+            const newUnique = newRecipes.filter(r => !allRecipes.find(existing => existing._id === r._id));
+            setAllRecipes(prev => [...prev, ...newUnique]);
+            setSkip(prev => prev + 6);
+        } catch (err: any) {
+            setFetchMoreError(err.message || "Something went wrong");
+            setHasMore(false);
+        } finally {
+            setIsFetchingMore(false);
+        }
+    }, [skip, allRecipes]);
+
+    useEffect(() => {
+        if (!hasMore) return;
+
+        const observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !isFetchingMore && !loading && !error) {
+                loadMoreRecipes();
+            }
+        });
+
+        const currentRef = observerRef.current;
+        if (currentRef) observer.observe(currentRef);
+
+        return () => {
+            if (currentRef) observer.unobserve(currentRef);
+        };
+    }, [loadMoreRecipes, isFetchingMore, loading, error]);
 
     document.title = "Food Recipes | Explore";
 
@@ -25,7 +84,7 @@ function Explore() {
                 {loading ? (
                     <LoadingExplore />
                 ) : error ? (
-                    <div className='error' style={{ width: "fit-content" }}>
+                    <div className="error" style={{ width: "fit-content" }}>
                         <i className='bx bx-error-circle'></i>
                         <span>{error}, please refresh the page!</span>
                     </div>
@@ -35,7 +94,7 @@ function Explore() {
                             <h2>Explore recipes</h2>
                         </div>
                         <div className="explore">
-                            {recipes?.map((recipe) => (
+                            {allRecipes.map(recipe => (
                                 <div className="recipe" key={recipe._id}>
                                     <div className="recipeTop">
                                         <p>{recipe.cuisine}</p>
@@ -66,11 +125,35 @@ function Explore() {
                                 </div>
                             ))}
                         </div>
+
+                        {isFetchingMore && (
+                            <div style={{ marginTop: 40, fontWeight: "bold", textAlign: "center" }}>
+                                <span>Loading...</span>
+                            </div>
+                        )}
+                        {fetchMoreError && (
+                            <center>
+                                <div className="error" style={{ width: "fit-content", marginTop: 40 }}>
+                                    <i className='bx bx-error-circle'></i>
+                                    <span>{fetchMoreError}</span>
+                                </div>
+                            </center>
+                        )}
+                        {reachedEnd && !fetchMoreError && (
+                            <center>
+                                <div className="error done" style={{ width: "fit-content", marginTop: 40 }}>
+                                    <i className='bx bx-check-circle'></i>
+                                    <p>No more recipes to load!</p>
+                                </div>
+                            </center>
+                        )}
+
+                        <div ref={observerRef} style={{ height: 1 }}></div>
                     </div>
                 )}
             </div>
         </div>
-    )
+    );
 }
 
-export default Explore
+export default Explore;
