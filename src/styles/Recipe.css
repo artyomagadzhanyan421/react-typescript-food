@@ -167,6 +167,8 @@
     position: fixed;
     overflow: auto;
     pointer-events: none;
+    display: flex;
+    align-items: center;
     opacity: 0;
     background: rgb(28, 25, 23, 0.5);
     backdrop-filter: blur(10px);
