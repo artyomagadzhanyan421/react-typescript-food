@@ -58,6 +58,8 @@ aside a {
 .drop {
     background-color: #292524;
     color: white;
+    border: none;
+    outline: none;
     display: flex;
     align-items: center;
     text-wrap: nowrap;

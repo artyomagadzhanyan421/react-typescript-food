@@ -48,6 +48,7 @@
 .formBlock.createForm {
     background-color: #292524;
     padding: 40px;
+    max-width: 700px;
     border-radius: 25px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
 }

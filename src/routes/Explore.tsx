@@ -17,6 +17,7 @@ function Explore() {
     const [fetchMoreError, setFetchMoreError] = useState("");
     const [reachedEnd, setReachedEnd] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const [toggle, setToggle] = useState(false);
 
     const observerRef = useRef<HTMLDivElement | null>(null);
 
@@ -92,7 +93,58 @@ function Explore() {
                     <div>
                         <div className="slider-arrows">
                             <h2>Explore recipes</h2>
+                            <button className="username" onClick={(() => setToggle(!toggle))}>
+                                <i className='bx bx-filter-alt' style={{ fontSize: 23 }}></i>
+                                <span>Filter search</span>
+                            </button>
                         </div>
+
+                        <div className={toggle ? "overlay pop" : "overlay"}>
+                            <form className="instructions search">
+                                <div className="slider-arrows" style={{ marginBottom: 22 }}>
+                                    <h2 style={{ marginBottom: 0 }}>Explore recipe</h2>
+                                    <i
+                                        className='bx bx-x-circle'
+                                        style={{ cursor: "pointer", fontSize: 23 }}
+                                        onClick={(() => setToggle(!toggle))}
+                                    ></i>
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-bowl-rice'></i>
+                                    <input type="text" placeholder="Title" />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-time-five'></i>
+                                    <input type="number" placeholder="Time (in minutes)" />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-food-menu'></i>
+                                    <input type="text" placeholder="Ingredients (with a comma)" />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-hash'></i>
+                                    <input type="text" placeholder="Tags (with a comma)" />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-map'></i>
+                                    <input type="text" placeholder="Cuisine" />
+                                </div>
+                                <div className="btnFlex">
+                                    <button className="enterBtn">
+                                        <i className="bx bx-search-alt-2" style={{ color: "black" }}></i>
+                                        <span>Search recipe</span>
+                                    </button>
+                                    <button
+                                        className="enterBtn reset"
+                                        type="reset"
+                                    >
+                                        <i className="bx bx-reset" style={{ color: "white" }}></i>
+                                        <span>Reset recipe</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
                         <div className="explore">
                             {allRecipes.map(recipe => (
                                 <div className="recipe" key={recipe._id}>
