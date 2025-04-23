@@ -203,7 +203,7 @@ function Recipe() {
                             <div className={toggle ? "overlay pop" : "overlay"}>
                                 <div className="instructions">
                                     <div className="slider-arrows">
-                                        <h2 style={{ fontSize: 25 }}>Instructions</h2>
+                                        <h2>Instructions</h2>
                                         <i
                                             className='bx bx-x-circle'
                                             style={{ cursor: "pointer", fontSize: 23 }}

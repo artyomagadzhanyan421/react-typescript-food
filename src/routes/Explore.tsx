@@ -17,6 +17,14 @@ function Explore() {
     const [fetchMoreError, setFetchMoreError] = useState("");
     const [reachedEnd, setReachedEnd] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const [toggle, setToggle] = useState(false);
+
+    const [title, setTitle] = useState("");
+    const [time, setTime] = useState("");
+    const [ingredients, setIngredients] = useState("");
+    const [tags, setTags] = useState("");
+    const [cuisine, setCuisine] = useState("");
+    const [searchError, setSearchError] = useState('');
 
     const observerRef = useRef<HTMLDivElement | null>(null);
 
@@ -75,6 +83,44 @@ function Explore() {
         };
     }, [loadMoreRecipes, isFetchingMore, loading, error]);
 
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsFetchingMore(true);
+        setSearchError("");
+        setFetchMoreError("");
+        setReachedEnd(false);
+
+        const token = localStorage.getItem("token");
+
+        const params = new URLSearchParams();
+        if (title) params.append("title", title);
+        if (time) params.append("time", time);
+        if (ingredients) params.append("ingredients", ingredients);
+        if (tags) params.append("tags", tags);
+        if (cuisine) params.append("cuisine", cuisine);
+
+        try {
+            const res = await fetch(`${apiUrl}recipes?${params.toString()}&skip=0&limit=6`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.message);
+            }
+
+            setAllRecipes(data);
+            setSkip(6);
+            setHasMore(data.length === 6);
+            setToggle(false);
+        } catch (err: any) {
+            setSearchError(err.message);
+        } finally {
+            setIsFetchingMore(false);
+        }
+    };
+
     document.title = "Food Recipes | Explore";
 
     return (
@@ -92,7 +138,74 @@ function Explore() {
                     <div>
                         <div className="slider-arrows">
                             <h2>Explore recipes</h2>
+                            <button className="username" onClick={(() => setToggle(!toggle))}>
+                                <i className='bx bx-filter-alt' style={{ fontSize: 23 }}></i>
+                                <span>Filter search</span>
+                            </button>
                         </div>
+
+                        <div className={toggle ? "overlay pop" : "overlay"}>
+                            <form className="instructions search" onSubmit={handleSearch}>
+                                <div className="slider-arrows" style={{ marginBottom: 22 }}>
+                                    <h2 style={{ marginBottom: 0 }}>Let's search</h2>
+                                    <i
+                                        className='bx bx-x-circle'
+                                        style={{ cursor: "pointer", fontSize: 23 }}
+                                        onClick={(() => setToggle(!toggle))}
+                                    ></i>
+                                </div>
+                                <div className="error" style={{ display: searchError ? "" : "none" }}>
+                                    <i className='bx bx-error-circle'></i>
+                                    <span>{searchError}</span>
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-bowl-rice'></i>
+                                    <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-time-five'></i>
+                                    <input type="number" placeholder="Time (in minutes)" value={time} onChange={e => setTime(e.target.value)} />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-food-menu'></i>
+                                    <input type="text" placeholder="Ingredients (with a comma)" value={ingredients} onChange={e => setIngredients(e.target.value)} />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-hash'></i>
+                                    <input type="text" placeholder="Tags (with a comma)" value={tags} onChange={e => setTags(e.target.value)} />
+                                </div>
+                                <div className="inputBox">
+                                    <i className='bx bx-map'></i>
+                                    <input type="text" placeholder="Cuisine" value={cuisine} onChange={e => setCuisine(e.target.value)} />
+                                </div>
+                                <div className="btnFlex">
+                                    <button className="enterBtn">
+                                        <i className={isFetchingMore ? "bx bx-refresh bx-spin" : "bx bx-search-alt-2"} style={{ color: "black" }}></i>
+                                        <span>{isFetchingMore ? "Searching..." : "Search recipe"}</span>
+                                    </button>
+                                    <button
+                                        className="enterBtn reset"
+                                        type="button"
+                                        onClick={() => {
+                                            setTitle("");
+                                            setTime("");
+                                            setIngredients("");
+                                            setTags("");
+                                            setCuisine("");
+                                            setSkip(6);
+                                            setHasMore(true);
+                                            setReachedEnd(false);
+                                            setSearchError("");
+                                            setAllRecipes(initialRecipes || []);
+                                        }}
+                                    >
+                                        <i className="bx bx-reset" style={{ color: "white" }}></i>
+                                        <span>Reset recipe</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
                         <div className="explore">
                             {allRecipes.map(recipe => (
                                 <div className="recipe" key={recipe._id}>
