@@ -61,6 +61,8 @@ aside a {
     display: flex;
     align-items: center;
     text-wrap: nowrap;
+    border: none;
+    outline: none;
     cursor: pointer;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.05);
     border-radius: 10px;
