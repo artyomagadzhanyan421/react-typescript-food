@@ -12,9 +12,6 @@ import Create from './routes/Create';
 import Edit from './routes/Edit';
 import Explore from './routes/Explore';
 
-// Components
-import ScrollToTop from './components/ScrollToTop';
-
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -72,7 +69,6 @@ function App() {
 
   return (
     <div className="App">
-      <ScrollToTop />
       <Routes>
         <Route
           path="/"

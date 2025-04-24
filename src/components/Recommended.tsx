@@ -21,7 +21,6 @@ import TypeRecipe from "../types/TypeRecipe";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
-// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Recipes() {
     const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes/random?limit=10`);
