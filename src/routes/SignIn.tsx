@@ -6,7 +6,6 @@ import "../styles/Auth.css";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
-// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function SignIn() {
   const [show, setShow] = useState(false);

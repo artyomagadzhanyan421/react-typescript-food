@@ -177,7 +177,7 @@
     width: 100%;
     top: 0%;
     left: 0%;
-    z-index: 2;
+    z-index: 1;
 }
 
 .overlay.pop {
@@ -191,14 +191,8 @@
 
 .instructions {
     margin: auto;
-    width: 700px;
+    max-width: 700px;
     transform: translateY(10px);
-}
-
-.instructions.search {
-    display: flex;
-    flex-direction: column;
-    gap: 12.5px;
 }
 
 .instructions ul,
