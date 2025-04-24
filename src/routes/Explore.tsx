@@ -13,9 +13,11 @@ import TypeRecipe from "../types/TypeRecipe";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Explore() {
     const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes/`);
+    const [recipesState, setRecipes] = useState<TypeRecipe[] | null>(null);
 
     const [title, setTitle] = useState("");
     const [time, setTime] = useState("");
@@ -25,6 +27,42 @@ function Explore() {
 
     const [toggle, setToggle] = useState(false);
     const [search, setSearch] = useState(false);
+    const [errorSearch, setErrorSearch] = useState('');
+
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSearch(true);
+
+        try {
+            const params = new URLSearchParams();
+            if (title) params.append("title", title);
+            if (time) params.append("time", time);
+            if (ingredients) params.append("ingredients", ingredients);
+            if (tags) params.append("tags", tags);
+            if (cuisine) params.append("cuisine", cuisine);
+
+            const response = await fetch(`${apiUrl}recipes/search?${params.toString()}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`, // if your auth system uses Bearer token
+                },
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                setErrorSearch(data.message);
+                return;
+            }
+
+            const data = await response.json();
+            setRecipes(data); // <-- Add this state below
+            setToggle(false); // Close modal after success
+            setErrorSearch("");
+        } catch (error) {
+            setErrorSearch("Something went wrong, try again!");
+        } finally {
+            setSearch(false);
+        }
+    };
 
     document.title = "Food Recipes | Explore";
 
@@ -50,14 +88,18 @@ function Explore() {
                         </div>
 
                         <div className={toggle ? "overlay pop" : "overlay"}>
-                            <form className="instructions search">
-                                <div className="slider-arrows">
+                            <form className="instructions search" onSubmit={handleSearch}>
+                                <div className="slider-arrows" style={{ marginBottom: 22 }}>
                                     <h2 style={{ marginBottom: 0 }}>Let's search...</h2>
                                     <i
                                         className='bx bx-x-circle'
                                         style={{ cursor: "pointer", fontSize: 23 }}
                                         onClick={(() => setToggle(!toggle))}
                                     ></i>
+                                </div>
+                                <div className="error" style={{ display: errorSearch ? "" : "none" }}>
+                                    <i className='bx bx-error-circle'></i>
+                                    <span>{errorSearch}</span>
                                 </div>
                                 <div className="inputBox">
                                     <i className='bx bx-bowl-rice'></i>
@@ -83,7 +125,7 @@ function Explore() {
                                 <div className="btnFlex">
                                     <button className="enterBtn" disabled={search}>
                                         <i className={search ? "bx bx-refresh bx-spin" : "bx bx-filter-alt"} style={{ color: "black" }}></i>
-                                        <span>{search ? "Loading..." : "Search recipe"}</span>
+                                        <span>{search ? "Loading..." : "Search recipes"}</span>
                                     </button>
                                     <button
                                         className="enterBtn reset"
@@ -95,6 +137,7 @@ function Explore() {
                                             setIngredients("");
                                             setTags("");
                                             setCuisine("");
+                                            setRecipes(null);
                                         }}
                                     >
                                         <i className="bx bx-reset" style={{ color: "white" }}></i>
@@ -105,7 +148,7 @@ function Explore() {
                         </div>
 
                         <div className="explore">
-                            {recipes?.map((recipe) => (
+                            {(recipesState || recipes)?.map((recipe) => (
                                 <div className="recipe" key={recipe._id}>
                                     <div className="recipeTop">
                                         <p>{recipe.cuisine}</p>
