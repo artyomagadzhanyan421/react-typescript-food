@@ -125,7 +125,7 @@ function Recipe() {
         <div className="Home">
             <Navbar />
             <div className="Recipe">
-                {loading ? (
+                {loading && loadingImg ? (
                     <LoadingRecipe />
                 ) : error ? (
                     <div className="error" style={{ width: "fit-content" }}>
