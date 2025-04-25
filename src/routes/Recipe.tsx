@@ -20,22 +20,27 @@ import "../styles/Recipe.css";
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 const imgUrl = import.meta.env.VITE_PEXELS_API_KEY;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Recipe() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
+
+    const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
+
     const role = localStorage.getItem("role");
     const token = localStorage.getItem("token");
 
     const [copied, setCopied] = useState(false);
+    const [save, setSave] = useState(false);
+
     const [deleting, setDeleting] = useState(false);
+    const [saving, setSaving] = useState(false);
+
     const [loadingImg, setLoadingImg] = useState(true);
     const [toggle, setToggle] = useState(false);
-
-    const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
-
-    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
     {
         loading ? (
@@ -48,6 +53,12 @@ function Recipe() {
             document.title = `Food Recipes | ${recipe.title}`
         )
     }
+
+    useEffect(() => {
+        if (recipe) {
+            setSave(recipe.isSaved); // The flag from backend!
+        }
+    }, [recipe]);
 
     const handleCopy = async () => {
         try {
@@ -121,6 +132,34 @@ function Recipe() {
         }
     };
 
+    const handleSave = async () => {
+        if (!token || !id) return;
+
+        try {
+            setSaving(true);
+            const res = await fetch(`${apiUrl}recipes/${id}/${save ? 'unsave' : 'save'}`, {
+                method: save ? "DELETE" : "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert(data.message);
+                setSave(!save);
+            } else {
+                alert(data.message);
+            }
+        } catch (err) {
+            console.error("Connection error:", err);
+            alert("Connection error!");
+        } finally {
+            setSaving(false);
+        }
+    };
+
     return (
         <div className="Home">
             <Navbar />
@@ -178,17 +217,13 @@ function Recipe() {
                         <div className="recipe-block">
                             <p className="recipe-name">{recipe.title}</p>
                             <div className="recipe-flex">
-                                <button style={{ cursor: "pointer" }}>
-                                    <i className='bx bx-book-bookmark' style={{ fontSize: 22.5 }}></i>
-                                    <p>Add</p>
+                                <button style={{ cursor: "pointer" }} onClick={handleSave}>
+                                    <i className={saving ? "bx bx-refresh bx-spin" : save ? "bx bx-bookmark-alt-minus" : "bx bx-book-bookmark"} style={{ fontSize: 22.5 }}></i>
+                                    <p>{saving ? "Saving..." : save ? "Unsave" : "Save"}</p>
                                 </button>
                                 <button style={{ cursor: "pointer" }}>
                                     <i className='bx bx-like' style={{ fontSize: 22.5 }}></i>
                                     <p>Like</p>
-                                </button>
-                                <button style={{ cursor: "pointer" }}>
-                                    <i className='bx bx-dislike' style={{ fontSize: 22.5 }}></i>
-                                    <p>Dislike</p>
                                 </button>
                                 <button style={{ cursor: "pointer" }} onClick={handleCopy}>
                                     <i className={copied ? "bx bx-check-circle" : "bx bx-share-alt"} style={{ fontSize: 22.5 }}></i>
