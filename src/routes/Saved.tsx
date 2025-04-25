@@ -11,10 +11,13 @@ import useFetch from "../hooks/useFetch";
 import TypeRecipe from "../types/TypeRecipe";
 
 // .env
-const local = import.meta.env.VITE_LOCALHOST_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Saved() {
-    const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${local}recipes/saved`);
+    const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes/saved`);
+
+    document.title = "Food Recipes | Saved recipes";
 
     return (
         <div className="Home">
