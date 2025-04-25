@@ -20,13 +20,13 @@ import "../styles/Recipe.css";
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 const imgUrl = import.meta.env.VITE_PEXELS_API_KEY;
-const local = import.meta.env.VITE_LOCALHOST_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Recipe() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${local}recipes/${id}`);
+    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
     const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
 
@@ -109,7 +109,7 @@ function Recipe() {
         if (!token || !id) return;
         setDeleting(true);
         try {
-            const res = await fetch(`${local}recipes/${id}`, {
+            const res = await fetch(`${apiUrl}recipes/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -137,7 +137,7 @@ function Recipe() {
 
         try {
             setSaving(true);
-            const res = await fetch(`${local}recipes/${id}/${save ? 'unsave' : 'save'}`, {
+            const res = await fetch(`${apiUrl}recipes/${id}/${save ? 'unsave' : 'save'}`, {
                 method: save ? "DELETE" : "POST",
                 headers: {
                     Authorization: `Bearer ${token}`
