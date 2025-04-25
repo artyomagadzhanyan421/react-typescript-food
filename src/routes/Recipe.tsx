@@ -20,22 +20,27 @@ import "../styles/Recipe.css";
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 const imgUrl = import.meta.env.VITE_PEXELS_API_KEY;
+const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Recipe() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
+
+    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${local}recipes/${id}`);
+
     const role = localStorage.getItem("role");
     const token = localStorage.getItem("token");
 
     const [copied, setCopied] = useState(false);
+    const [save, setSave] = useState(false);
+
     const [deleting, setDeleting] = useState(false);
+    const [saving, setSaving] = useState(false);
+
     const [loadingImg, setLoadingImg] = useState(true);
     const [toggle, setToggle] = useState(false);
-
-    const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
-
-    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
     {
         loading ? (
@@ -98,7 +103,7 @@ function Recipe() {
         if (!token || !id) return;
         setDeleting(true);
         try {
-            const res = await fetch(`${apiUrl}recipes/${id}`, {
+            const res = await fetch(`${local}recipes/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -118,6 +123,34 @@ function Recipe() {
         } catch (err) {
             console.error("Error deleting recipe:", err);
             setDeleting(false);
+        }
+    };
+
+    const handleSave = async () => {
+        if (!token || !id) return;
+
+        try {
+            setSaving(true);
+            const res = await fetch(`${local}recipes/${id}/save`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert(data.message);
+                setSave(true);
+            } else {
+                alert(data.message);
+            }
+        } catch (err) {
+            console.error("Failed to save recipe:", err);
+            alert("Failed to save recipe!");
+        } finally {
+            setSaving(false);
         }
     };
 
@@ -178,9 +211,9 @@ function Recipe() {
                         <div className="recipe-block">
                             <p className="recipe-name">{recipe.title}</p>
                             <div className="recipe-flex">
-                                <button style={{ cursor: "pointer" }}>
+                                <button style={{ cursor: "pointer" }} onClick={handleSave}>
                                     <i className='bx bx-book-bookmark' style={{ fontSize: 22.5 }}></i>
-                                    <p>Add</p>
+                                    <p>{saving ? "Saving..." : save ? "Remove" : "Save"}</p>
                                 </button>
                                 <button style={{ cursor: "pointer" }}>
                                     <i className='bx bx-like' style={{ fontSize: 22.5 }}></i>

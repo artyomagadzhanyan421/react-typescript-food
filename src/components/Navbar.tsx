@@ -71,9 +71,9 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#">
+                            <Link to="/saved">
                                 <span>Saved</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#">

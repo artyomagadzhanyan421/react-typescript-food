@@ -11,6 +11,7 @@ import Recipe from './routes/Recipe';
 import Create from './routes/Create';
 import Edit from './routes/Edit';
 import Explore from './routes/Explore';
+import Saved from './routes/Saved';
 
 // Components
 import ScrollToTop from './components/ScrollToTop';
@@ -87,6 +88,10 @@ function App() {
         <Route
           path='/explore'
           element={token ? <Explore /> : <Navigate to="/signin" replace />}
+        />
+        <Route
+          path='/saved'
+          element={token ? <Saved /> : <Navigate to="/signin" replace />}
         />
         <Route
           path='/create'
