@@ -43,7 +43,7 @@ function Explore() {
 
             const response = await fetch(`${apiUrl}recipes/search?${params.toString()}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`, // if your auth system uses Bearer token
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
 
@@ -54,8 +54,8 @@ function Explore() {
             }
 
             const data = await response.json();
-            setRecipes(data); // <-- Add this state below
-            setToggle(false); // Close modal after success
+            setRecipes(data); 
+            setToggle(false); 
             setErrorSearch("");
         } catch (error) {
             setErrorSearch("Something went wrong, try again!");
@@ -64,7 +64,7 @@ function Explore() {
         }
     };
 
-    document.title = "Food Recipes | Explore";
+    document.title = "Food Recipes | Explore recipes";
 
     return (
         <div className="Home">

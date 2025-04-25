@@ -56,7 +56,7 @@ function Recipe() {
 
     useEffect(() => {
         if (recipe) {
-            setSave(recipe.isSaved); // The flag from backend!
+            setSave(recipe.isSaved); 
         }
     }, [recipe]);
 
@@ -106,7 +106,6 @@ function Recipe() {
     }, [recipe]);
 
     const handleDelete = async () => {
-        if (!token || !id) return;
         setDeleting(true);
         try {
             const res = await fetch(`${apiUrl}recipes/${id}`, {
@@ -133,8 +132,6 @@ function Recipe() {
     };
 
     const handleSave = async () => {
-        if (!token || !id) return;
-
         try {
             setSaving(true);
             const res = await fetch(`${apiUrl}recipes/${id}/${save ? 'unsave' : 'save'}`, {
