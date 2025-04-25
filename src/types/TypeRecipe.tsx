@@ -11,6 +11,7 @@ type TypeRecipe = {
     ingredients: string[];
     tags: string[];
     instructions: string;
+    isSaved: boolean
 }
 
 export default TypeRecipe;
