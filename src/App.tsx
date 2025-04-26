@@ -12,6 +12,7 @@ import Create from './routes/Create';
 import Edit from './routes/Edit';
 import Explore from './routes/Explore';
 import Saved from './routes/Saved';
+import Favourites from './routes/Favourites';
 
 // Components
 import ScrollToTop from './components/ScrollToTop';
@@ -92,6 +93,10 @@ function App() {
         <Route
           path='/saved'
           element={token ? <Saved /> : <Navigate to="/signin" replace />}
+        />
+        <Route
+          path='/favourites'
+          element={token ? <Favourites /> : <Navigate to="/signin" replace />}
         />
         <Route
           path='/create'
