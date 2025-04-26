@@ -27,13 +27,6 @@ function LoadingExplore() {
                                 width={75}
                                 style={{ borderRadius: 20 }}
                             />
-                            <Skeleton
-                                baseColor="#44403C"
-                                highlightColor='#78716C'
-                                height={46}
-                                width={46}
-                                circle
-                            />
                         </div>
                         <div className="recipe-text loading">
                             <Skeleton

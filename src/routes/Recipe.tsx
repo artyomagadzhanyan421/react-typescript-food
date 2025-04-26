@@ -20,13 +20,13 @@ import "../styles/Recipe.css";
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 const imgUrl = import.meta.env.VITE_PEXELS_API_KEY;
-// const local = import.meta.env.VITE_LOCALHOST_API_URL;
+const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Recipe() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
+    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${local}recipes/${id}`);
 
     const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
 
@@ -35,9 +35,13 @@ function Recipe() {
 
     const [copied, setCopied] = useState(false);
     const [save, setSave] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [disliked, setDisliked] = useState(false);
 
     const [deleting, setDeleting] = useState(false);
     const [saving, setSaving] = useState(false);
+    const [liking, setLiking] = useState(false);
+    const [disliking, setDisliking] = useState(false);
 
     const [loadingImg, setLoadingImg] = useState(true);
     const [toggle, setToggle] = useState(false);
@@ -56,7 +60,9 @@ function Recipe() {
 
     useEffect(() => {
         if (recipe) {
-            setSave(recipe.isSaved); 
+            setSave(recipe.isSaved);
+            setLiked(recipe.isLiked);
+            setDisliked(recipe.isDisliked);
         }
     }, [recipe]);
 
@@ -157,6 +163,60 @@ function Recipe() {
         }
     };
 
+    const handleLike = async () => {
+        try {
+            setLiking(true);
+            const res = await fetch(`${local}recipes/${id}/${liked ? "unlike" : "like"}`, {
+                method: liked ? "DELETE" : "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert(data.message);
+                setLiked(!liked);
+                if (disliked) setDisliked(false); // If liking, remove dislike
+            } else {
+                alert(data.message);
+            }
+        } catch (err) {
+            console.error("Connection error:", err);
+            alert("Connection error!");
+        } finally {
+            setLiking(false);
+        }
+    };
+
+    const handleDislike = async () => {
+        try {
+            setDisliking(true);
+            const res = await fetch(`${local}recipes/${id}/${disliked ? "undislike" : "dislike"}`, {
+                method: disliked ? "DELETE" : "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert(data.message);
+                setDisliked(!disliked);
+                if (liked) setLiked(false); // If disliking, remove like
+            } else {
+                alert(data.message);
+            }
+        } catch (err) {
+            console.error("Connection error:", err);
+            alert("Connection error!");
+        } finally {
+            setDisliking(false);
+        }
+    };
+
     return (
         <div className="Home">
             <Navbar />
@@ -215,12 +275,16 @@ function Recipe() {
                             <p className="recipe-name">{recipe.title}</p>
                             <div className="recipe-flex">
                                 <button style={{ cursor: "pointer" }} onClick={handleSave}>
-                                    <i className={saving ? "bx bx-refresh bx-spin" : save ? "bx bx-bookmark-alt-minus" : "bx bx-book-bookmark"} style={{ fontSize: 22.5 }}></i>
+                                    <i className={saving ? "bx bx-refresh bx-spin" : save ? "bx bxs-book-bookmark" : "bx bx-book-bookmark"} style={{ fontSize: 22.5 }}></i>
                                     <p>{saving ? "Saving..." : save ? "Unsave" : "Save"}</p>
                                 </button>
-                                <button style={{ cursor: "pointer" }}>
-                                    <i className='bx bx-like' style={{ fontSize: 22.5 }}></i>
-                                    <p>Like</p>
+                                <button style={{ cursor: "pointer" }} onClick={handleLike}>
+                                    <i className={liking ? "bx bx-refresh bx-spin" : liked ? "bx bxs-like" : "bx bx-like"} style={{ fontSize: 22.5 }}></i>
+                                    <p>{liking ? "Saving..." : liked ? "Remove" : "Like"}</p>
+                                </button>
+                                <button style={{ cursor: "pointer" }} onClick={handleDislike}>
+                                    <i className={disliking ? "bx bx-refresh bx-spin" : disliked ? "bx bxs-dislike" : "bx bx-dislike"} style={{ fontSize: 22.5 }}></i>
+                                    <p>{disliking ? "Saving..." : disliked ? "Remove" : "Dislike"}</p>
                                 </button>
                                 <button style={{ cursor: "pointer" }} onClick={handleCopy}>
                                     <i className={copied ? "bx bx-check-circle" : "bx bx-share-alt"} style={{ fontSize: 22.5 }}></i>

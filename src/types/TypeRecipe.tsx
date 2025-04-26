@@ -12,6 +12,8 @@ type TypeRecipe = {
     tags: string[];
     instructions: string;
     isSaved: boolean
+    isLiked: boolean;
+    isDisliked: boolean;
 }
 
 export default TypeRecipe;

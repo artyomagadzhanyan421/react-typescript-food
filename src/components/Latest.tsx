@@ -81,9 +81,6 @@ function Latest() {
                             <SwiperSlide key={recipe._id}>
                                 <div className="recipeTop">
                                     <p>{recipe.cuisine}</p>
-                                    <button className="mark">
-                                        <i className='bx bx-book-bookmark' style={{ fontSize: 20 }}></i>
-                                    </button>
                                 </div>
                                 <Link to={`/recipe/${recipe._id}`} style={{ color: 'white' }}>
                                     <img src={recipe.picture} alt={recipe.title} />
