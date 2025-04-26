@@ -76,9 +76,9 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#">
+                            <Link to="/favourites">
                                 <span>Favourites</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     {role === "admin" ? (
