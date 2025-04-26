@@ -20,13 +20,13 @@ import "../styles/Recipe.css";
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
 const imgUrl = import.meta.env.VITE_PEXELS_API_KEY;
-const local = import.meta.env.VITE_LOCALHOST_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Recipe() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${local}recipes/${id}`);
+    const { recipes: recipe, loading, error } = useFetch<TypeRecipe>(`${apiUrl}recipes/${id}`);
 
     const [ingredientImages, setIngredientImages] = useState<Record<string, string>>({});
 
@@ -166,7 +166,7 @@ function Recipe() {
     const handleLike = async () => {
         try {
             setLiking(true);
-            const res = await fetch(`${local}recipes/${id}/${liked ? "unlike" : "like"}`, {
+            const res = await fetch(`${apiUrl}recipes/${id}/${liked ? "unlike" : "like"}`, {
                 method: liked ? "DELETE" : "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -193,7 +193,7 @@ function Recipe() {
     const handleDislike = async () => {
         try {
             setDisliking(true);
-            const res = await fetch(`${local}recipes/${id}/${disliked ? "undislike" : "dislike"}`, {
+            const res = await fetch(`${apiUrl}recipes/${id}/${disliked ? "undislike" : "dislike"}`, {
                 method: disliked ? "DELETE" : "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

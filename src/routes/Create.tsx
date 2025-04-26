@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 // CSS
 import "../styles/Create.css";
 
-//.env
+// .env
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function Create() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
-//.env
+// .env
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function SignUp() {

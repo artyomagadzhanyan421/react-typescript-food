@@ -13,7 +13,7 @@ import useFetch from "../hooks/useFetch";
 // Types
 import TypeRecipe from "../types/TypeRecipe";
 
-//.env
+// .env
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function Edit() {
