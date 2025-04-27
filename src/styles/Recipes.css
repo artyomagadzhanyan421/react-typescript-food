@@ -130,3 +130,38 @@
 .recipe:hover img {
     transform: scale(1.1);
 }
+
+@media(max-width: 1000px) {
+    .explore {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 660px) {
+    .explore {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    .slider-arrows {
+        margin-bottom: 28px;
+    }
+
+    .slider-arrows .username span {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
+    .swiper-slide {
+        width: 260px;
+        height: 300px;
+    }
+}
+
+@media(max-width: 450px) {
+    .slider-arrows h2 {
+        font-size: 23px;
+    }
+}

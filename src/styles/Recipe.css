@@ -152,7 +152,7 @@
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 14px;
 }
 
 .tag {
@@ -172,7 +172,7 @@
     opacity: 0;
     background: rgb(28, 25, 23, 0.5);
     backdrop-filter: blur(10px);
-    padding: 116px 25px;
+    padding: 116px 50px;
     height: 100vh;
     width: 100%;
     top: 0%;
@@ -213,4 +213,64 @@
 
 .instructions p:empty {
     height: 25px;
+}
+
+@media(max-width: 600px) {
+
+    .recipe-block,
+    .ingredients,
+    .details,
+    .instructions {
+        padding: 40px 30px;
+    }
+
+    .overlay,
+    .overlay.pop {
+        padding: 116px 30px;
+    }
+}
+
+@media(max-width: 500px) {
+    .recipe-name {
+        font-size: 30px;
+    }
+
+    .recipe-picture {
+        height: 350px;
+    }
+}
+
+@media(max-width: 450px) {
+    .recipe-data h2 {
+        font-size: 23px;
+    }
+
+    @media(max-width: 600px) {
+
+        .recipe-block,
+        .ingredients,
+        .details,
+        .instructions {
+            padding: 40px 25px;
+        }
+
+        .overlay,
+        .overlay.pop {
+            padding: 110px 25px;
+        }
+    }
+}
+
+@media(max-width: 400px) {
+    .recipe-flex {
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .recipe-flex div,
+    .recipe-flex button {
+        justify-content: center;
+        width: 100%;
+        padding: 15px 20px;
+    }
 }

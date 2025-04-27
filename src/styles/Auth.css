@@ -14,7 +14,7 @@
     grid-template-rows: 615px;
     border-radius: 25px;
     width: 1150px;
-    margin: 50px 25px;
+    margin: 50px 50px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.1);
 }
 
@@ -49,7 +49,7 @@
     background-color: #292524;
     padding: 40px;
     border-radius: 25px;
-    width: 700px;
+    max-width: 700px;
     box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.25);
 }
 
@@ -148,4 +148,58 @@
 
 .error.errorNone {
     display: none;
+}
+
+@media(max-width: 1000px) {
+    .authGrid {
+        grid-template-columns: initial;
+        grid-template-rows: initial;
+        width: 700px;
+        margin: 80px 50px;
+    }
+
+    .authGrid img {
+        display: none;
+    }
+
+    .authGrid form {
+        padding: 65px 40px;
+    }
+}
+
+@media(max-width: 600px) {
+    .authGrid form {
+        padding: 65px 30px;
+    }
+
+    .formBlock.createForm {
+        padding: 40px 30px;
+    }
+
+    .authGrid {
+        margin: 80px 30px;
+    }
+
+    .authGrid form h1 {
+        font-size: 25px;
+    }
+
+    .btnFlex {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media(max-width: 450px) {
+    .authGrid form {
+        padding: 65px 25px;
+    }
+
+    .formBlock.createForm {
+        padding: 40px 25px;
+    }
+
+    .authGrid {
+        margin: 80px 25px;
+    }
 }

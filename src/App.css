@@ -4,3 +4,15 @@
     min-height: 100vh;
     padding: 0px 50px 60px 50px;
 }
+
+@media(max-width: 600px) {
+    .Home {
+        padding: 0px 30px 60px 30px;
+    }
+}
+
+@media(max-width: 450px) {
+    .Home {
+        padding: 0px 25px 60px 25px;
+    }
+}

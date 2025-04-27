@@ -88,7 +88,7 @@ function Navbar() {
                             <span>Let's cook...</span>
                         </Link>
                     ) : (
-                        <span>User</span>
+                        <div />
                     )}
                 </aside>
                 <i
