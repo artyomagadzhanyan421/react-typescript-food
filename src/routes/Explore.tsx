@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import { useState } from "react";
 
 // Components
 import Navbar from "../components/Navbar";
@@ -7,6 +6,7 @@ import LoadingExplore from "../components/loading/LoadingExplore";
 
 // Hooks
 import useFetch from '../hooks/useFetch';
+import useSearch from "../hooks/useSearch";
 
 // Types
 import TypeRecipe from "../types/TypeRecipe";
@@ -17,52 +17,26 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 function Explore() {
     const { recipes, loading, error } = useFetch<TypeRecipe[]>(`${apiUrl}recipes/`);
-    const [recipesState, setRecipes] = useState<TypeRecipe[] | null>(null);
 
-    const [title, setTitle] = useState("");
-    const [time, setTime] = useState("");
-    const [ingredients, setIngredients] = useState("");
-    const [tags, setTags] = useState("");
-    const [cuisine, setCuisine] = useState('');
-
-    const [toggle, setToggle] = useState(false);
-    const [search, setSearch] = useState(false);
-    const [errorSearch, setErrorSearch] = useState('');
-
-    const handleSearch = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setSearch(true);
-
-        try {
-            const params = new URLSearchParams();
-            if (title) params.append("title", title);
-            if (time) params.append("time", time);
-            if (ingredients) params.append("ingredients", ingredients);
-            if (tags) params.append("tags", tags);
-            if (cuisine) params.append("cuisine", cuisine);
-
-            const response = await fetch(`${apiUrl}recipes/search?${params.toString()}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            });
-
-            if (!response.ok) {
-                const data = await response.json();
-                setErrorSearch(data.message);
-                return;
-            }
-
-            const data = await response.json();
-            setRecipes(data); 
-            setToggle(false); 
-            setErrorSearch("");
-        } catch (error) {
-            setErrorSearch("Something went wrong, try again!");
-        } finally {
-            setSearch(false);
-        }
-    };
+    const {
+        title,
+        time,
+        ingredients,
+        tags,
+        cuisine,
+        setTitle,
+        setTime,
+        setIngredients,
+        setTags,
+        setCuisine,
+        toggle,
+        setToggle,
+        recipesState,
+        searching,
+        errorSearch,
+        handleSearch,
+        handleReset,
+    } = useSearch();
 
     document.title = "Food Recipes | Explore recipes";
 
@@ -123,22 +97,15 @@ function Explore() {
                                 </div>
 
                                 <div className="btnFlex">
-                                    <button className="enterBtn" disabled={search}>
-                                        <i className={search ? "bx bx-refresh bx-spin" : "bx bx-filter-alt"} style={{ color: "black" }}></i>
-                                        <span>{search ? "Loading..." : "Search recipes"}</span>
+                                    <button className="enterBtn" disabled={searching}>
+                                        <i className={searching ? "bx bx-refresh bx-spin" : "bx bx-filter-alt"} style={{ color: "black" }}></i>
+                                        <span>{searching ? "Loading..." : "Search recipes"}</span>
                                     </button>
                                     <button
                                         className="enterBtn reset"
                                         type="reset"
-                                        disabled={search}
-                                        onClick={() => {
-                                            setTitle("");
-                                            setTime("");
-                                            setIngredients("");
-                                            setTags("");
-                                            setCuisine("");
-                                            setRecipes(null);
-                                        }}
+                                        disabled={searching}
+                                        onClick={handleReset}
                                     >
                                         <i className="bx bx-reset" style={{ color: "white" }}></i>
                                         <span>Reset data</span>
