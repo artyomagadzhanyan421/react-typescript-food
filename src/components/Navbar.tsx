@@ -45,6 +45,8 @@ function Navbar() {
         }
     };
 
+    const [toggle, setToggle] = useState(false);
+
     return (
         <div className="Navbar">
             <nav>
@@ -59,32 +61,36 @@ function Navbar() {
                         {signout ? "Loading..." : "Sign Out"}
                     </button>
                 </div>
-                <aside>
+                <aside className={toggle ? "asidePop" : ""}>
                     <ul>
                         <li>
-                            <Link to="/">
+                            <Link to="/" onClick={() => setToggle(!toggle)}>
+                                <i className="bx bx-home-alt" id="nav-i"></i>
                                 <span>Home</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/explore">
+                            <Link to="/explore" onClick={() => setToggle(!toggle)}>
+                                <i className="bx bx-compass" id="nav-i"></i>
                                 <span>Explore</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/saved">
+                            <Link to="/saved" onClick={() => setToggle(!toggle)}>
+                                <i className="bx bx-book-bookmark" id="nav-i"></i>
                                 <span>Saved</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/favourites">
+                            <Link to="/favourites" onClick={() => setToggle(!toggle)}>
+                                <i className="bx bx-like" id="nav-i"></i>
                                 <span>Favourites</span>
                             </Link>
                         </li>
                     </ul>
                     {role === "admin" ? (
                         <Link to="/create" className="enterBtn navBtn">
-                            <i className="bx bx-plus-circle" style={{ color: "black" }}></i>
+                            <i className="bx bx-plus-circle"></i>
                             <span>Let's cook...</span>
                         </Link>
                     ) : (
@@ -98,8 +104,10 @@ function Navbar() {
                         cursor: "pointer",
                         fontSize: 23
                     }}
+                    onClick={() => setToggle(!toggle)}
                 ></i>
             </nav>
+            <div onClick={() => setToggle(!toggle)} className={toggle ? "overlay pop" : "overlay"}></div>
         </div>
     )
 }

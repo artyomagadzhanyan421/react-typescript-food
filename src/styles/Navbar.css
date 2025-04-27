@@ -54,6 +54,10 @@ aside a {
     gap: 10px;
 }
 
+#nav-i {
+    display: none;
+}
+
 .username,
 .drop {
     background-color: #292524;
@@ -80,13 +84,77 @@ aside a {
     display: none;
 }
 
+.enterBtn.navBtn i {
+    color: black;
+}
+
 #rotate {
     transform: rotate(-180deg);
 }
 
+.asidePop {
+    pointer-events: all;
+    opacity: 1;
+    transform: translateX(0px);
+}
+
 @media(max-width: 1000px) {
     aside {
-        display: none;
+        background: #292524;
+        position: fixed;
+        flex-direction: column;
+        justify-content: initial;
+        align-items: initial;
+        overflow: auto;
+        pointer-events: none;
+        transform: translateX(-25px);
+        opacity: 0;
+        box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.5);
+        top: 0%;
+        left: 0%;
+        height: 100vh;
+        width: 350px;
+        z-index: 3;
+        padding: 13px 0px;
+    }
+
+    aside a {
+        font-weight: 500;
+        padding: 12px 30px;
+        gap: 18px;
+
+        &:hover {
+            background-color: #44403C;
+        }
+    }
+
+    .enterBtn.navBtn {
+        color: white;
+        background: none;
+        justify-content: initial;
+        border: none;
+        border-radius: initial;
+        box-shadow: none;
+        padding: 12px 30px;
+        font-weight: 500;
+        gap: 18px;
+
+        &:hover {
+            background-color: #44403C;
+        }
+    }
+
+    aside ul {
+        flex-direction: column;
+        align-items: initial;
+        gap: initial;
+    }
+
+    #nav-i,
+    .enterBtn.navBtn i {
+        color: white;
+        display: initial;
+        font-size: 23px;
     }
 
     nav {
