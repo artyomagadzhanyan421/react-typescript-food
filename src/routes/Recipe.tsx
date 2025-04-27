@@ -114,7 +114,7 @@ function Recipe() {
     const handleDelete = async () => {
         setDeleting(true);
         try {
-            const res = await fetch(`${apiUrl}recipes/${id}`, {
+            const res = await fetch(`${apiUrl}operation/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -140,7 +140,7 @@ function Recipe() {
     const handleSave = async () => {
         try {
             setSaving(true);
-            const res = await fetch(`${apiUrl}recipes/${id}/${save ? 'unsave' : 'save'}`, {
+            const res = await fetch(`${apiUrl}book/${id}/${save ? 'unsave' : 'save'}`, {
                 method: save ? "DELETE" : "POST",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -166,7 +166,7 @@ function Recipe() {
     const handleLike = async () => {
         try {
             setLiking(true);
-            const res = await fetch(`${apiUrl}recipes/${id}/${liked ? "unlike" : "like"}`, {
+            const res = await fetch(`${apiUrl}rate/${id}/${liked ? "unlike" : "like"}`, {
                 method: liked ? "DELETE" : "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -193,7 +193,7 @@ function Recipe() {
     const handleDislike = async () => {
         try {
             setDisliking(true);
-            const res = await fetch(`${apiUrl}recipes/${id}/${disliked ? "undislike" : "dislike"}`, {
+            const res = await fetch(`${apiUrl}rate/${id}/${disliked ? "undislike" : "dislike"}`, {
                 method: disliked ? "DELETE" : "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -15,6 +15,7 @@ import TypeRecipe from "../types/TypeRecipe";
 
 // .env
 const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Edit() {
   const { id } = useParams();
@@ -87,7 +88,7 @@ function Edit() {
     }
 
     try {
-      const response = await fetch(`${apiUrl}recipes/${id}`, {
+      const response = await fetch(`${apiUrl}operation/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`

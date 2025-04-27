@@ -7,6 +7,7 @@ import "../styles/Navbar.css";
 
 //.env
 const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Navbar() {
     const [signout, setSignout] = useState(false);

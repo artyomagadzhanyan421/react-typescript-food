@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 
 // .env
 const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function SignUp() {
   const [show, setShow] = useState(false);

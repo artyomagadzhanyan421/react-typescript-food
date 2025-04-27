@@ -11,6 +11,7 @@ import "../styles/Create.css";
 
 // .env
 const apiUrl = import.meta.env.VITE_API_URL;
+// const local = import.meta.env.VITE_LOCALHOST_API_URL;
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -65,7 +66,7 @@ function Create() {
       formData.append("picture", picture);
       formData.append("instructions", instructions);
 
-      const res = await fetch(`${apiUrl}recipes`, {
+      const res = await fetch(`${apiUrl}operation`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`
