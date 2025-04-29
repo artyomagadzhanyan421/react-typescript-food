@@ -39,6 +39,14 @@ Install dependencies:
 npm install
 ```
 
+Create a ```.env``` file in the root directory, update the values as needed:
+
+```env
+VITE_API_URL=https://node-express-food.vercel.app/
+VITE_PEXELS_API_KEY=W0iiGa7sv9vBnTmD1kxkF2C8yrV5SiP56y2lvkfcZgOMxAGD0wDtHf0e
+VITE_LOCALHOST_API_URL=http://localhost:5000/
+```
+
 Start the development server:
 
 ```bash
