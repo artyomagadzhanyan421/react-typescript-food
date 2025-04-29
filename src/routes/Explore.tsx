@@ -38,7 +38,7 @@ function Explore() {
         handleReset,
     } = useSearch();
 
-    document.title = "Food Recipes | Explore recipes";
+    document.title = "BiteBook | Explore recipes";
 
     return (
         <div className="Home">

@@ -49,7 +49,7 @@ function SignUp() {
     }
   };
 
-  document.title = "Food Recipes | Sign Up";
+  document.title = "BiteBook | Sign Up";
 
   return (
     <div className="Auth">

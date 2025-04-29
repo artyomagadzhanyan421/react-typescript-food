@@ -29,7 +29,7 @@ function Create() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  document.title = "Food Recipes | Create recipe";
+  document.title = "BiteBook | Create recipe";
 
   const editor = useEditor({
     extensions: [StarterKit],

@@ -53,7 +53,7 @@ function SignIn() {
     }
   };
 
-  document.title = "Food Recipes | Sign In";
+  document.title = "BiteBook | Sign In";
 
   return (
     <div className="Auth">

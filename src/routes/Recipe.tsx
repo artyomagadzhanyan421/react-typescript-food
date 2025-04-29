@@ -54,7 +54,7 @@ function Recipe() {
         ) : !recipe ? (
             document.title = "Not Found!"
         ) : (
-            document.title = `Food Recipes | ${recipe.title}`
+            document.title = `BiteBook | ${recipe.title}`
         )
     }
 

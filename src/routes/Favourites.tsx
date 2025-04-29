@@ -38,7 +38,7 @@ function Favourites() {
     handleReset,
   } = useSearch();
 
-  document.title = "Food Recipes | Favourite recipes";
+  document.title = "BiteBook | Favourite recipes";
 
   return (
     <div className="Home">

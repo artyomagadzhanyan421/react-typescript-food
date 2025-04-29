@@ -38,7 +38,7 @@ function Saved() {
         handleReset,
     } = useSearch();
 
-    document.title = "Food Recipes | Saved recipes";
+    document.title = "BiteBook | Saved recipes";
 
     return (
         <div className="Home">
