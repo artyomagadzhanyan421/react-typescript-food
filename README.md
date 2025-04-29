@@ -2,7 +2,7 @@
 
 MERN stack culinary application using TypeScript for people who want to check out unique and interesting recipes. This application was completed as a freelance project for a small local business in the catering industry.
 
-![node](https://img.shields.io/badge/node-v20.16.0-green?style=flat)
+![node.js](https://img.shields.io/badge/node-v20.16.0-green?style=flat)
 ![react](https://img.shields.io/badge/react-^19.0.0-blue?style=flat)
 ![typescript](https://img.shields.io/badge/typescript-~5.7.2-blue?style=flat)
 
