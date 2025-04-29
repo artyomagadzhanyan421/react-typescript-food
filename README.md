@@ -60,7 +60,7 @@ The app should now be running at http://localhost:5173 (using Vite frontend tool
 > [!IMPORTANT]  
 > Make sure you've installed and lunched [backend repo](https://github.com/artyomagadzhanyan421/node-express-food) on your machine first! 
 
-If you would like to check out how the client side works together with the server locally, uncomment ```local``` variable and replace ```apiUrl``` by that (needs to be done inside **components** and **routes** folders only):
+If you would like to check out how the client side works together with the server locally, uncomment ```local``` variable and replace ```apiUrl``` by that (needs to be done inside **components**, **hooks**, and **routes** folders only):
 
 ```js
 // .env
