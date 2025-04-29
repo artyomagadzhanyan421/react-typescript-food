@@ -53,4 +53,4 @@ Start the development server:
 npm run dev
 ```
 
-The app should now be running at http://localhost:5173 server.
+The app should now be running at http://localhost:5173 (if you're using Vite) or http://localhost:3000 (if using Create React App).
