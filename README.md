@@ -1,6 +1,6 @@
 # BiteBook
 
-MERN stack culinary application using TypeScript for people who want to check out unique and interesting recipes. In this application were implemented:
+MERN stack culinary application using TypeScript for people who want to check out unique and interesting recipes. This application was completed as a freelance project for a small local business in the catering industry.
 
 * JWT based authentication system with automatic log out
 * Role orriented structure (user and admin)
