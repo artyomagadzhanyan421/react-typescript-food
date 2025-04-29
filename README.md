@@ -2,6 +2,8 @@
 
 MERN stack culinary application using TypeScript for people who want to check out unique and interesting recipes. This application was completed as a freelance project for a small local business in the catering industry.
 
+## How does it work?
+
 * JWT based authentication system with automatic log out
 * Role orriented structure (user and admin)
 * Custom hooks for rendering and searching recipes
