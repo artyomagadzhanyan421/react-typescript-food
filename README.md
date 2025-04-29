@@ -53,4 +53,4 @@ Start the development server:
 npm run dev
 ```
 
-The app should now be running at http://localhost:5173 (using Vite framework).
+The app should now be running at http://localhost:5173 (using Vite frontend tool).
