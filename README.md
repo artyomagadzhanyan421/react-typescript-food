@@ -20,3 +20,29 @@ MERN stack culinary application using TypeScript for people who want to check ou
 
 > [!IMPORTANT]  
 > Make sure you've installed the latest version of [Git](https://git-scm.com/) on your machine already!
+
+Open your terminal and clone this repository:
+
+```bash
+git clone https://github.com/artyomagadzhanyan421/react-typescript-food.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd react-typescript-food
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The app should now be running at http://localhost:5173 server.
