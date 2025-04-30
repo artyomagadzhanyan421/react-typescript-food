@@ -1,6 +1,6 @@
 # BiteBook
 
-MERN stack culinary application using TypeScript for people who want to check out unique and interesting recipes. This application was completed as a freelance project for a small local business in the catering industry.
+MERN stack culinary application using TypeScript for people who want to check out unique and interesting recipes.
 
 ![node.js](https://img.shields.io/badge/node-v20.16.0-green?style=flat)
 ![react](https://img.shields.io/badge/react-^19.0.0-blue?style=flat)
