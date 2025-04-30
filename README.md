@@ -55,6 +55,9 @@ npm run dev
 
 The app should now be running at http://localhost:5173 (using Vite frontend tool).
 
+* Admin username: **artyom421**
+* Admin password: **artyom468293**
+
 ### Using backend
 
 > [!IMPORTANT]  
